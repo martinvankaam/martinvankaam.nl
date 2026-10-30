@@ -7,7 +7,7 @@
 <meta name="description" content="Martin van Kaam is ondernemer en managing partner bij Marbas. Vastgoed met potentie: acquisitie, financiering, structurering en beheer. Maak kennis.">
 <link rel="canonical" href="https://martinvankaam.nl/">
 <link rel="icon" href="assets/mb.svg" type="image/svg+xml">
-<meta name="theme-color" content="#1a1f2e">
+<meta name="theme-color" content="#0c0c0c">
 <meta property="og:title" content="Martin van Kaam | Ondernemer en vastgoedinvesteerder">
 <meta property="og:description" content="Managing partner bij Marbas. Ik koop vastgoed met potentie en blijf erbij betrokken.">
 <meta property="og:type" content="website">
@@ -15,6 +15,8 @@
 <meta property="og:locale" content="nl_NL">
 <meta property="og:image" content="https://martinvankaam.nl/assets/martin.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dmsans.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,357 +34,323 @@
 }
 </script>
 <style>
+@font-face { font-family: "Anton"; src: url(assets/fonts/anton.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "DM Sans"; src: url(assets/fonts/dmsans.woff2) format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url(assets/fonts/instrument-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url(assets/fonts/instrument.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+
 :root {
-  --bg: #f6f3ee;
-  --surface: #ffffff;
-  --ink: #1a1f2e;
-  --muted: #5d6270;
-  --line: #ddd6ca;
+  --cream: #e6e3dc;
+  --black: #0c0c0c;
   --sand: #d4a574;
-  --sand-deep: #9c6b36;
-  --navy: #1a1f2e;
-  --on-navy: #f6f3ee;
-  --radius: 22px;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #12151f;
-    --surface: #1a1f2e;
-    --ink: #f1ede6;
-    --muted: #a3a8b4;
-    --line: #2b3144;
-    --sand: #d4a574;
-    --sand-deep: #d4a574;
-    --navy: #0c0f17;
-    --on-navy: #f1ede6;
-  }
+  --ink-soft: #4b4943;
+  --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --pad: clamp(22px, 5vw, 72px);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--cream); color: var(--black); font: 400 18px/1.6 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 400; }
+.sw { font-family: var(--serif); font-style: italic; font-weight: 400; text-transform: none; font-size: 1.12em; letter-spacing: 0; line-height: .8; }
 
-/* header */
-.top {
-  position: sticky; top: 0; z-index: 10;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: saturate(1.4) blur(12px);
-  -webkit-backdrop-filter: saturate(1.4) blur(12px);
-  border-bottom: 1px solid var(--line);
+.wrap { padding: 0 var(--pad); max-width: 1500px; margin: 0 auto; }
+.dark { background: var(--black); color: var(--cream); }
+.sandbg { background: var(--sand); color: var(--black); }
+.dark .sandbg p, .sandbg p { color: var(--black); }
+.label { font: 600 13px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; margin: 0 0 22px; opacity: .7; }
+.big { font-size: clamp(54px, 11.5vw, 190px); line-height: .9; letter-spacing: -.01em; text-transform: lowercase; }
+.lead { font-size: clamp(20px, 2.3vw, 28px); line-height: 1.45; max-width: 30em; margin: 28px 0 0; }
+.dark .lead, .dark p { color: color-mix(in srgb, var(--cream) 82%, transparent); }
+
+/* floating pills */
+.pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 22px; border-radius: 999px; border: 0; cursor: pointer;
+  font: 600 15px/1 var(--sans); text-decoration: none;
+  background: var(--black); color: var(--cream);
+  transition: transform .15s ease, background .2s ease, color .2s ease;
 }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
-.brand { font-weight: 700; letter-spacing: .02em; text-decoration: none; white-space: nowrap; }
-.brand span { color: var(--sand-deep); }
-.top nav { display: flex; gap: 22px; font-size: 15px; }
-.top nav a { text-decoration: none; color: var(--muted); }
-.top nav a:hover { color: var(--ink); }
-@media (max-width: 640px) {
-  .top nav { gap: 14px; font-size: 14px; }
-  .top nav a.hide-sm { display: none; }
-}
+.pill:hover { transform: translateY(-1px); }
+.pill.light { background: var(--cream); color: var(--black); }
+.pill.line { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; }
+.pill.sandpill { background: var(--sand); color: var(--black); }
+.fixed { position: fixed; top: 18px; z-index: 40; mix-blend-mode: normal; }
+.fixed.l { left: var(--pad); }
+.fixed.r { right: var(--pad); }
+.fixed .pill { background: var(--cream); color: var(--black); box-shadow: 0 2px 14px rgba(0,0,0,.18); }
+
+/* menu overlay */
+.menu { position: fixed; inset: 0; z-index: 30; background: var(--black); color: var(--cream); display: none; flex-direction: column; justify-content: center; padding: 90px var(--pad) 40px; }
+.menu.open { display: flex; }
+.menu a.big-link { font: 400 clamp(48px, 11vw, 120px)/1 var(--display); text-decoration: none; text-transform: lowercase; padding: 4px 0; display: block; transition: color .2s ease, transform .2s ease; }
+.menu a.big-link:hover { color: var(--sand); transform: translateX(10px); }
+.menu .small { margin-top: 28px; color: color-mix(in srgb, var(--cream) 65%, transparent); font-size: 16px; }
 
 /* hero */
-.hero { padding: 56px 0 72px; }
-.hero .wrap { display: grid; gap: 40px; align-items: center; }
-@media (min-width: 880px) { .hero .wrap { grid-template-columns: 1.25fr 1fr; gap: 64px; } }
-.kicker { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--sand-deep); font-weight: 600; margin: 0 0 18px; }
-h1 { font-size: clamp(40px, 7.4vw, 82px); line-height: 1.02; letter-spacing: -.03em; margin: 0 0 24px; font-weight: 800; }
-h1 .x { color: var(--sand-deep); font-weight: 400; }
-.lede { font-size: clamp(19px, 2.4vw, 23px); line-height: 1.5; color: var(--muted); max-width: 34em; margin: 0 0 32px; }
-.portrait { border-radius: var(--radius); overflow: hidden; background: var(--line); aspect-ratio: 4 / 5; max-width: 460px; justify-self: end; width: 100%; }
-.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
-@media (max-width: 879px) { .portrait { justify-self: start; max-width: 100%; aspect-ratio: 4 / 4.4; } }
-
-.cta { display: flex; flex-wrap: wrap; gap: 12px; }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 13px 24px; border-radius: 999px; font: inherit; font-size: 16px; font-weight: 600;
-  text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer;
-  transition: transform .15s ease, background .15s ease, color .15s ease;
+.hero { position: relative; min-height: 100vh; min-height: 100svh; background: var(--black); color: var(--cream); overflow: hidden; display: flex; align-items: flex-end; }
+.hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,12,12,.82) 0%, rgba(12,12,12,.35) 38%, rgba(12,12,12,0) 62%); pointer-events: none; }
+.hero .wrap { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(28px, 5vh, 56px); }
+.hero h1 { font-size: clamp(76px, 22vw, 330px); line-height: .84; text-transform: uppercase; letter-spacing: -.005em; }
+.hero h1 .sw { font-size: 1.05em; }
+.hero .tag { font-size: clamp(18px, 2.2vw, 28px); line-height: 1.35; margin: clamp(14px, 2.4vh, 26px) 0 0; max-width: 24em; color: var(--cream); }
+@media (min-width: 900px) {
+  .hero img.bg { inset: 0 0 0 auto; width: 58vw; height: 100%; object-position: 50% 0%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%); mask-image: linear-gradient(to right, transparent 0%, #000 38%); }
+  .hero::after { background: linear-gradient(to top, rgba(12,12,12,.8) 0%, rgba(12,12,12,.25) 40%, rgba(12,12,12,0) 60%); }
+  .hero h1 { font-size: clamp(76px, 16.5vw, 250px); }
 }
-.btn:hover { transform: translateY(-1px); }
-.btn.primary { background: var(--ink); color: var(--bg); }
-.btn.small { padding: 10px 18px; font-size: 15px; }
 
 /* sections */
-section { padding: 88px 0; border-top: 1px solid var(--line); }
-.label { font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--sand-deep); font-weight: 700; margin: 0 0 14px; }
-h2 { font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spacing: -.025em; margin: 0 0 22px; font-weight: 800; max-width: 18em; }
-.two { display: grid; gap: 36px; }
-@media (min-width: 880px) { .two { grid-template-columns: 5fr 7fr; gap: 72px; } }
-.prose p { margin: 0 0 18px; font-size: 18px; }
-.prose p.big { font-size: clamp(21px, 2.6vw, 26px); line-height: 1.45; letter-spacing: -.01em; }
+section { padding: clamp(80px, 13vw, 190px) 0; }
+.intro .cols { display: grid; gap: 48px; margin-top: 56px; }
+@media (min-width: 900px) { .intro .cols { grid-template-columns: 7fr 5fr; gap: 80px; align-items: end; } }
+.intro p { margin: 0 0 18px; font-size: 20px; max-width: 32em; }
+.stats { display: grid; gap: 22px; margin-top: 8px; }
+.stat { border-top: 2px solid var(--black); padding-top: 14px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.stat b { font: 400 clamp(44px, 6vw, 84px)/1 var(--display); }
+.stat span { font-size: 16px; text-align: right; color: var(--ink-soft); }
 
-/* stats */
-.stats { display: grid; gap: 14px; margin-top: 44px; }
-@media (min-width: 640px) { .stats { grid-template-columns: repeat(3, 1fr); } }
-.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; }
-.stat b { display: block; font-size: 38px; line-height: 1.1; letter-spacing: -.02em; }
-.stat span { color: var(--muted); font-size: 15px; }
-
-/* timeline */
-.timeline { list-style: none; margin: 40px 0 0; padding: 0; border-top: 1px solid var(--line); }
-.timeline li { display: grid; gap: 4px 28px; padding: 22px 0; border-bottom: 1px solid var(--line); }
-@media (min-width: 720px) { .timeline li { grid-template-columns: 140px 1fr; } }
-.timeline .yr { font-size: 28px; font-weight: 800; letter-spacing: -.02em; color: var(--sand-deep); line-height: 1.2; }
-.timeline h3 { margin: 0 0 4px; font-size: 20px; letter-spacing: -.01em; }
-.timeline p { margin: 0; color: var(--muted); }
-.timeline li.now .yr::after { content: "nu"; margin-left: 10px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; background: var(--sand); color: #1a1f2e; padding: 3px 9px; border-radius: 999px; vertical-align: middle; }
+/* track record panels */
+.track { padding: 0; }
+.panel { padding: clamp(64px, 9vw, 130px) 0; }
+.panel .wrap { display: grid; gap: 22px 60px; align-items: start; }
+@media (min-width: 900px) { .panel .wrap { grid-template-columns: 5fr 7fr; } }
+.panel .yr { font-family: var(--display); font-size: clamp(90px, 17vw, 260px); line-height: .85; letter-spacing: -.01em; }
+.panel h3 { font-size: clamp(38px, 6.4vw, 96px); line-height: .95; text-transform: lowercase; }
+.panel p { margin: 22px 0 0; font-size: clamp(18px, 1.7vw, 22px); max-width: 30em; }
+.panel .now { display: inline-block; margin-left: 12px; vertical-align: middle; font: 600 13px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; background: var(--sand); color: var(--black); padding: 7px 12px; border-radius: 999px; position: relative; top: -.4em; }
+.sandbg .now { background: var(--black); color: var(--sand); }
 
 /* portfolio */
-.cards { display: grid; gap: 22px; margin-top: 40px; }
-@media (min-width: 880px) { .cards { grid-template-columns: repeat(3, 1fr); } }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
-.card .ph { aspect-ratio: 4 / 3; overflow: hidden; background: var(--line); }
-.card .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
-.card:hover .ph img { transform: scale(1.04); }
-.card .body { padding: 22px 24px 26px; }
-.card .tag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--sand-deep); font-weight: 700; margin: 0 0 8px; }
-.card h3 { margin: 0 0 8px; font-size: 24px; letter-spacing: -.015em; }
-.card p { margin: 0; color: var(--muted); font-size: 16px; }
-.banner { margin-top: 22px; border-radius: var(--radius); overflow: hidden; aspect-ratio: 21 / 9; background: var(--line); }
+.proj { display: grid; gap: 22px; margin-top: clamp(40px, 6vw, 80px); }
+.proj + .proj { margin-top: clamp(56px, 8vw, 110px); }
+@media (min-width: 900px) { .proj { grid-template-columns: 5fr 7fr; gap: 56px; align-items: end; } .proj.flip { grid-template-columns: 7fr 5fr; } .proj.flip .ph { order: -1; } }
+.proj h3 { font-size: clamp(54px, 8.4vw, 130px); line-height: .9; text-transform: lowercase; }
+.proj .city { font: 600 13px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; margin: 0 0 18px; opacity: .7; }
+.proj p.d { margin: 20px 0 0; max-width: 24em; }
+.ph { overflow: hidden; background: #cfcbc2; aspect-ratio: 4 / 3; border-radius: 6px; }
+.ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+.proj:hover .ph img { transform: scale(1.035); }
+.banner { margin-top: clamp(56px, 8vw, 110px); aspect-ratio: 21 / 9; overflow: hidden; border-radius: 6px; background: #cfcbc2; }
 .banner img { width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 640px) { .banner { aspect-ratio: 4 / 3; } }
+.note { margin: 22px 0 0; font-size: 15px; opacity: .75; }
 
-/* expertise + zoek */
-.tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 0; padding: 0; list-style: none; }
-.tags li { border: 1.5px solid var(--ink); border-radius: 999px; padding: 8px 18px; font-weight: 600; font-size: 16px; }
-.seek { background: var(--navy); color: var(--on-navy); border-radius: var(--radius); padding: 40px 32px; margin-top: 48px; display: grid; gap: 28px; }
-@media (min-width: 880px) { .seek { grid-template-columns: 1fr 1fr; padding: 52px 56px; gap: 56px; } }
-.seek h3 { margin: 0 0 12px; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.15; letter-spacing: -.02em; }
-.seek p { margin: 0; color: color-mix(in srgb, var(--on-navy) 75%, transparent); }
-.seek ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-.seek li { padding-left: 26px; position: relative; }
-.seek li::before { content: ""; position: absolute; left: 0; top: .72em; width: 14px; height: 2px; background: var(--sand); }
-.seek .range { font-size: 40px; font-weight: 800; letter-spacing: -.02em; color: var(--sand); line-height: 1.1; margin-bottom: 6px; }
+/* expertise */
+.xlist { font-family: var(--display); font-size: clamp(44px, 9.6vw, 150px); line-height: 1; text-transform: uppercase; letter-spacing: -.005em; margin: 0; }
+.dark p.xlist { color: var(--cream); }
+.xlist span { white-space: nowrap; }
+.xlist .x { color: var(--sand); font-family: var(--serif); font-style: italic; text-transform: none; padding: 0 .08em; }
+
+/* acquisitie */
+.seek .grid { display: grid; gap: 40px; margin-top: 40px; }
+@media (min-width: 900px) { .seek .grid { grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; } }
+.range { font: 400 clamp(64px, 11vw, 170px)/.9 var(--display); text-transform: uppercase; }
+.range small { display: block; font: 400 clamp(22px, 3vw, 36px)/1.2 var(--display); text-transform: uppercase; margin-top: 16px; letter-spacing: .02em; }
+.seek ul { list-style: none; margin: 0; padding: 0; }
+.seek li { font: 400 clamp(26px, 3.4vw, 44px)/1.15 var(--display); text-transform: uppercase; padding: 14px 0; border-top: 2px solid var(--black); display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
+.seek li:last-child { border-bottom: 2px solid var(--black); }
+.seek li::after { content: "x"; font-family: var(--serif); font-style: italic; text-transform: none; font-size: 1.2em; }
+.seek p.s { margin: 28px 0 0; font-size: 20px; max-width: 26em; }
 
 /* prive */
-.mosaic { display: grid; gap: 14px; margin-top: 40px; grid-template-columns: 1fr 1fr; }
-.mosaic figure { margin: 0; position: relative; border-radius: var(--radius); overflow: hidden; background: var(--line); aspect-ratio: 4 / 3; }
+.mosaic { display: grid; gap: 12px; margin-top: clamp(40px, 6vw, 80px); grid-template-columns: 1fr 1fr; }
+.mosaic figure { margin: 0; position: relative; overflow: hidden; background: #cfcbc2; aspect-ratio: 4 / 3; border-radius: 6px; }
 .mosaic .m-big { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
-.mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
 .mosaic figure:hover img { transform: scale(1.04); }
-.mosaic figcaption { position: absolute; left: 14px; bottom: 12px; font-size: 13px; font-weight: 600; color: #fff; background: rgba(12, 15, 23, .55); padding: 4px 11px; border-radius: 999px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-@media (min-width: 880px) {
-  .mosaic { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto auto; }
+.mosaic figcaption { position: absolute; left: 12px; bottom: 12px; font: 600 13px/1 var(--sans); color: var(--cream); background: rgba(12,12,12,.6); padding: 7px 12px; border-radius: 999px; }
+@media (min-width: 900px) {
+  .mosaic { grid-template-columns: repeat(4, 1fr); }
   .mosaic .m-big { grid-column: 1 / 3; grid-row: 1 / 3; aspect-ratio: auto; }
-  .mosaic figure:not(.m-big) { aspect-ratio: 4 / 3; }
 }
-.facts { display: grid; gap: 14px; margin-top: 22px; }
-@media (min-width: 720px) { .facts { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 980px) { .facts { grid-template-columns: repeat(3, 1fr); } }
-.fact { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; }
-.fact h3 { margin: 0 0 6px; font-size: 20px; letter-spacing: -.01em; }
-.fact p { margin: 0; color: var(--muted); font-size: 16px; }
+.facts { display: grid; gap: 0; margin-top: clamp(40px, 6vw, 80px); border-top: 2px solid var(--black); }
+@media (min-width: 900px) { .facts { grid-template-columns: repeat(2, 1fr); column-gap: 60px; } }
+.fact { padding: 26px 0; border-bottom: 2px solid var(--black); display: grid; gap: 8px 24px; }
+@media (min-width: 640px) { .fact { grid-template-columns: 220px 1fr; } }
+.fact h3 { font-size: clamp(30px, 3.2vw, 44px); line-height: 1; text-transform: lowercase; }
+.fact p { margin: 0; font-size: 17px; color: var(--ink-soft); }
 
 /* contact */
-.contact { text-align: left; }
-.mailaddr { display: inline-block; font-size: clamp(26px, 5.4vw, 60px); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; text-decoration: none; margin: 4px 0 30px; word-break: break-word; border-bottom: 4px solid var(--sand); }
-.mailaddr:hover { color: var(--sand-deep); }
-.contact .cta { margin-bottom: 14px; }
-.contact .social { margin-top: 26px; }
-.hint { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+.contact h2 { font-size: clamp(54px, 12vw, 200px); line-height: .88; text-transform: lowercase; }
+.mail { display: inline-block; margin: clamp(30px, 5vw, 60px) 0 clamp(26px, 4vw, 44px); font: 400 clamp(32px, 7.6vw, 120px)/1 var(--display); text-decoration: none; word-break: break-word; border-bottom: .06em solid var(--sand); transition: color .2s ease; }
+.mail:hover { color: var(--sand); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; }
+.row + .row { margin-top: 12px; }
+.hint { font-size: 14px; opacity: .6; margin: 22px 0 0; }
 
-footer { padding: 36px 0 52px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
-footer a { text-decoration: none; border-bottom: 1px solid var(--line); }
+footer { background: var(--black); color: color-mix(in srgb, var(--cream) 60%, transparent); padding: 28px 0 44px; font-size: 14px; border-top: 1px solid #262626; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+footer a { text-decoration: none; border-bottom: 1px solid #3a3a3a; }
 
 /* reveal */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.in { opacity: 1; transform: none; }
+.rv { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
+.rv.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .rv { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
-  .card .ph img, .mosaic img, .btn { transition: none; }
+  .ph img, .mosaic img, .pill, .menu a.big-link { transition: none; }
 }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="#top">Martin van Kaam<span>.</span></a>
-    <nav aria-label="Hoofdmenu">
-      <a class="hide-sm" href="#over">Over mij</a>
-      <a class="hide-sm" href="#trackrecord">Track record</a>
-      <a class="hide-sm" href="#portfolio">Portefeuille</a>
-      <a href="#prive">Privé</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+<div class="fixed l"><button class="pill" id="menubtn" type="button" aria-expanded="false" aria-controls="menu">Menu</button></div>
+<div class="fixed r"><a class="pill" href="#contact">Contact</a></div>
 
-<main id="top">
+<nav class="menu" id="menu" aria-label="Hoofdmenu">
+  <a class="big-link" href="#over">over mij</a>
+  <a class="big-link" href="#trackrecord">track record</a>
+  <a class="big-link" href="#portfolio">portefeuille</a>
+  <a class="big-link" href="#expertise">expertise</a>
+  <a class="big-link" href="#prive">privé</a>
+  <a class="big-link" href="#contact">contact</a>
+  <p class="small">mail@martinvankaam.nl</p>
+</nav>
 
-  <div class="hero">
+<main>
+
+  <header class="hero" id="top">
+    <img class="bg" src="assets/hero.jpg" width="1800" height="2106" alt="Martin van Kaam" fetchpriority="high">
     <div class="wrap">
-      <div>
-        <p class="kicker">Martin van Kaam</p>
-        <h1>Ondernemer <span class="x">x</span> Investeerder <span class="x">x</span> Vastgoed</h1>
-        <p class="lede">Managing partner bij Marbas. Ik koop vastgoed met potentie en blijf erbij betrokken, van aankoop tot dagelijks beheer.</p>
-        <div class="cta">
-          <a class="btn primary" href="#contact">Maak kennis</a>
-          <a class="btn" href="https://www.linkedin.com/in/martinvankaam" rel="me noopener">LinkedIn</a>
-          <a class="btn" href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>
+      <h1>Martin<br>V<i class="sw">A</i>n Kaam</h1>
+      <p class="tag">Ondernemer x Investeerder x Vastgoed</p>
+    </div>
+  </header>
+
+  <section class="intro" id="over">
+    <div class="wrap">
+      <p class="label rv">Over mij</p>
+      <h2 class="big rv">ik koop vastgoed met potentie en blijf <i class="sw">E</i>rbij.</h2>
+      <div class="cols">
+        <div class="rv">
+          <p>Ik begon als ondernemer in zonnepanelen en groeide door naar vastgoed. Sinds 2024 werk ik er volledig in.</p>
+          <p>Samen met Bas Kohlbrugge richtte ik Marbas op. Wij investeren voor eigen rekening in vastgoed met potentie: kantoren, bedrijfsruimten en multi-tenant gebouwen waar met de juiste aanpak meer in zit.</p>
+          <p>Mijn rol is acquisitie, financiering en structurering. Ik bedenk bij aankoop het plan voor een pand en bewaak daarna of het rendement wordt gehaald. Bas zorgt dat dat plan in de praktijk wordt uitgevoerd.</p>
+          <p style="margin-top:26px"><a class="pill" href="#prive">Ook privé</a></p>
         </div>
-      </div>
-      <div class="portrait">
-        <img src="assets/martin.jpg" width="933" height="1400" alt="Portret van Martin van Kaam" fetchpriority="high">
-      </div>
-    </div>
-  </div>
-
-  <section id="over">
-    <div class="wrap two">
-      <div class="reveal">
-        <p class="label">Over mij</p>
-        <h2>Bouwen, beheren en verbeteren.</h2>
-      </div>
-      <div class="prose reveal">
-        <p class="big">Ik ben begonnen als ondernemer in zonnepanelen en groeide door naar vastgoed. Sinds 2024 werk ik er volledig in.</p>
-        <p>Samen met Bas Kohlbrugge richtte ik Marbas op. Wij investeren voor eigen rekening in vastgoed met potentie: kantoren, bedrijfsruimten en multi-tenant gebouwen waar met de juiste aanpak meer in zit.</p>
-        <p>Mijn rol is acquisitie, financiering en structurering. Ik bedenk bij aankoop het plan voor een pand en bewaak daarna of het rendement wordt gehaald. Bas zorgt dat dat plan in de praktijk wordt uitgevoerd.</p>
-        <p>Buiten werktijd zit ik op de motor, heb ik iets met auto's of train ik voor een triatlon. <a href="#prive" style="border-bottom:1px solid var(--sand)">Meer over de privékant</a>.</p>
-      </div>
-    </div>
-    <div class="wrap">
-      <div class="stats reveal">
-        <div class="stat"><b>Ruim 120</b><span>objecten in beheer</span></div>
-        <div class="stat"><b>7.000+ m²</b><span>verhuurbaar oppervlak</span></div>
-        <div class="stat"><b>Sinds 2013</b><span>ondernemer</span></div>
+        <div class="stats rv">
+          <div class="stat"><b>120+</b><span>objecten in beheer</span></div>
+          <div class="stat"><b>7.000 m²</b><span>verhuurbaar oppervlak</span></div>
+          <div class="stat"><b>2013</b><span>ondernemer sinds</span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="trackrecord">
-    <div class="wrap">
-      <div class="reveal">
-        <p class="label">Track record</p>
-        <h2>Van zonnepanelen tot een eigen vastgoedportefeuille.</h2>
+  <section class="track dark" id="trackrecord" style="padding-top:clamp(80px,13vw,190px)">
+    <div class="wrap" style="padding-bottom:clamp(40px,6vw,80px)">
+      <p class="label rv">Track record</p>
+      <h2 class="big rv">van zonnep<i class="sw">A</i>nelen tot vastgoed.</h2>
+    </div>
+
+    <div class="panel dark">
+      <div class="wrap rv">
+        <div class="yr">2013</div>
+        <div><h3>mb s<i class="sw">O</i>lar</h3><p>Mijn eerste onderneming: verkoop en installatie van zonnepanelen. In 2020 volgt Bemtech op, en koop ik het bedrijfspand aan de Bolderweg voor de huisvesting.</p></div>
       </div>
-      <ol class="timeline reveal">
-        <li>
-          <div class="yr">2013</div>
-          <div><h3>MB Solar</h3><p>Mijn eerste onderneming: verkoop en installatie van zonnepanelen.</p></div>
-        </li>
-        <li>
-          <div class="yr">2019</div>
-          <div><h3>Marbas en Embeka</h3><p>Ik kies voor volledig ondernemerschap. Marbas wordt opgericht, en Embeka verzorgt vastgoedbeheer en onderhoud voor woningcorporaties.</p></div>
-        </li>
-        <li>
-          <div class="yr">2020</div>
-          <div><h3>Bemtech en eigen pand</h3><p>Bemtech volgt MB Solar op. Voor de huisvesting koop ik het bedrijfspand aan de Bolderweg.</p></div>
-        </li>
-        <li>
-          <div class="yr">2021</div>
-          <div><h3>Argonweg</h3><p>Marbas koopt het pand aan de Argonweg waar Embeka eerder huurde.</p></div>
-        </li>
-        <li>
-          <div class="yr">2024</div>
-          <div><h3>Volledig vastgoed</h3><p>De portefeuille wordt getaxeerd en geherfinancierd. Vanaf dan richt ik me volledig op vastgoed.</p></div>
-        </li>
-        <li>
-          <div class="yr">2025</div>
-          <div><h3>De Bunker, Haarlem</h3><p>Aankoop van het multi-tenant gebouw aan de Tappersweg, na een korte durffinanciering, taxatie en herfinanciering.</p></div>
-        </li>
-        <li class="now">
-          <div class="yr">2026</div>
-          <div><h3>Silverpoint, Almere</h3><p>Aankoop met durfkapitaal. Het pand wordt getransformeerd en voorzien van stabiele huurders.</p></div>
-        </li>
-      </ol>
+    </div>
+    <div class="panel sandbg">
+      <div class="wrap rv">
+        <div class="yr">2019</div>
+        <div><h3>marb<i class="sw">A</i>s en embeka</h3><p>Ik kies voor volledig ondernemerschap. Marbas wordt opgericht, en Embeka verzorgt vastgoedbeheer en onderhoud voor woningcorporaties. In 2021 koopt Marbas de Argonweg, waar Embeka eerder huurde.</p></div>
+      </div>
+    </div>
+    <div class="panel dark">
+      <div class="wrap rv">
+        <div class="yr">2024</div>
+        <div><h3>volledig v<i class="sw">A</i>stgoed</h3><p>De portefeuille wordt getaxeerd en geherfinancierd. Vanaf dan richt ik me volledig op vastgoed.</p></div>
+      </div>
+    </div>
+    <div class="panel sandbg">
+      <div class="wrap rv">
+        <div class="yr">2025</div>
+        <div><h3>de bunk<i class="sw">E</i>r</h3><p>Aankoop van het multi-tenant gebouw aan de Tappersweg in Haarlem, na een korte durffinanciering, taxatie en herfinanciering.</p></div>
+      </div>
+    </div>
+    <div class="panel dark">
+      <div class="wrap rv">
+        <div class="yr">2026</div>
+        <div><h3>silverp<i class="sw">O</i>int <span class="now">nu</span></h3><p>Aankoop van Silverpoint in Almere met durfkapitaal. Het pand wordt getransformeerd en voorzien van stabiele huurders.</p></div>
+      </div>
     </div>
   </section>
 
   <section id="portfolio">
     <div class="wrap">
-      <div class="reveal">
-        <p class="label">Portefeuille</p>
-        <h2>Gebouwen waar ik aan werk.</h2>
-      </div>
-      <div class="cards">
-        <article class="card reveal">
-          <div class="ph"><img src="assets/silverpoint.jpg" width="1600" height="1066" loading="lazy" alt="Kantoorgebouw Silverpoint in Almere"></div>
-          <div class="body">
-            <p class="tag">Almere</p>
-            <h3>Silverpoint</h3>
-            <p>Multi-tenant kantoor. Exploitatie en optimalisatie, met een transformatie naar een gebouw vol stabiele huurders.</p>
-          </div>
-        </article>
-        <article class="card reveal">
-          <div class="ph"><img src="assets/de-bunker.jpg" width="1600" height="1066" loading="lazy" alt="Gebouw De Bunker in Haarlem"></div>
-          <div class="body">
-            <p class="tag">Haarlem</p>
-            <h3>De Bunker</h3>
-            <p>Multi-tenant gebouw aan de Tappersweg met kantoren, studio's en ateliers. In exploitatie.</p>
-          </div>
-        </article>
-        <article class="card reveal">
-          <div class="ph"><img src="assets/garagebox.jpg" width="1066" height="1600" loading="lazy" alt="Garagebox aan de Tappersweg in Haarlem"></div>
-          <div class="body">
-            <p class="tag">Haarlem</p>
-            <h3>Garagebox Tappersweg</h3>
-            <p>Garageboxen naast De Bunker. Eenvoudig, stabiel en in exploitatie.</p>
-          </div>
-        </article>
-      </div>
-      <div class="banner reveal"><img src="assets/almere-lucht.jpg" width="1600" height="1066" loading="lazy" alt="Luchtfoto van Silverpoint in Almere"></div>
-      <p class="hint">Meer over het vastgoed en de werkwijze: <a href="https://www.marbas.nl" rel="noopener">marbas.nl</a></p>
+      <p class="label rv">Portefeuille</p>
+      <h2 class="big rv">gebouwen waar ik <i class="sw">A</i>an werk.</h2>
+
+      <article class="proj rv">
+        <div>
+          <p class="city">Almere</p>
+          <h3>silverp<i class="sw">O</i>int</h3>
+          <p class="d">Multi-tenant kantoor. Exploitatie en optimalisatie, met een transformatie naar een gebouw vol stabiele huurders.</p>
+        </div>
+        <div class="ph"><img src="assets/silverpoint.jpg" width="1600" height="1066" loading="lazy" alt="Kantoorgebouw Silverpoint in Almere"></div>
+      </article>
+
+      <article class="proj flip rv">
+        <div>
+          <p class="city">Haarlem</p>
+          <h3>de bunk<i class="sw">E</i>r</h3>
+          <p class="d">Multi-tenant gebouw aan de Tappersweg met kantoren, studio's en ateliers. In exploitatie.</p>
+        </div>
+        <div class="ph"><img src="assets/de-bunker.jpg" width="1600" height="1066" loading="lazy" alt="Gebouw De Bunker in Haarlem"></div>
+      </article>
+
+      <article class="proj rv">
+        <div>
+          <p class="city">Haarlem</p>
+          <h3>garagebox t<i class="sw">A</i>ppersweg</h3>
+          <p class="d">Garageboxen naast De Bunker. Eenvoudig, stabiel en in exploitatie.</p>
+        </div>
+        <div class="ph"><img src="assets/garagebox.jpg" width="1066" height="1600" loading="lazy" alt="Garagebox aan de Tappersweg in Haarlem" style="object-position:50% 60%"></div>
+      </article>
+
+      <div class="banner rv"><img src="assets/almere-lucht.jpg" width="1600" height="1066" loading="lazy" alt="Luchtfoto van Silverpoint in Almere"></div>
+      <p class="note">Meer over het vastgoed en de werkwijze: <a href="https://www.marbas.nl" rel="noopener">marbas.nl</a></p>
     </div>
   </section>
 
-  <section id="expertise">
+  <section class="dark" id="expertise">
     <div class="wrap">
-      <div class="reveal">
-        <p class="label">Expertise</p>
-        <h2>Waar ik goed in ben.</h2>
-        <ul class="tags">
-          <li>Acquisitie</li>
-          <li>Financiering</li>
-          <li>Structurering</li>
-          <li>Asset management</li>
-          <li>Verhuur</li>
-          <li>Beheer</li>
-          <li>Transformatie</li>
+      <p class="label rv">Expertise</p>
+      <p class="xlist rv"><span>acquisitie</span> <span class="x">x</span> <span>financiering</span> <span class="x">x</span> <span>structurering</span> <span class="x">x</span> <span>asset management</span> <span class="x">x</span> <span>verhuur</span> <span class="x">x</span> <span>beheer</span> <span class="x">x</span> <span>transformatie</span></p>
+    </div>
+  </section>
+
+  <section class="sandbg seek" id="acquisitie">
+    <div class="wrap">
+      <p class="label rv">Acquisitieprofiel</p>
+      <h2 class="big rv">heb je vastgoed met potenti<i class="sw">E</i>?</h2>
+      <div class="grid">
+        <div class="rv">
+          <div class="range">€3 tot €12 mln<small>Instap vanaf circa €1 miljoen</small></div>
+          <p class="s">Ik denk graag mee, ook als het nog niet op de markt is.</p>
+          <p style="margin-top:28px"><a class="pill" href="#contact">Neem contact op</a></p>
+        </div>
+        <ul class="rv">
           <li>Multi-tenant objecten</li>
+          <li>Portefeuilles</li>
+          <li>Objecten met leegstand</li>
+          <li>Off-market aanbod</li>
         </ul>
-      </div>
-      <div class="seek reveal">
-        <div>
-          <p class="label" style="color: var(--sand)">Acquisitieprofiel</p>
-          <h3>Heb je vastgoed met potentie?</h3>
-          <p>Ik denk graag mee, ook als het nog niet op de markt is.</p>
-        </div>
-        <div>
-          <div class="range">€3 tot €12 miljoen</div>
-          <p style="margin-bottom: 18px">Focus. Instap vanaf circa €1 miljoen.</p>
-          <ul>
-            <li>Multi-tenant objecten</li>
-            <li>Portefeuilles</li>
-            <li>Objecten met leegstand</li>
-            <li>Off-market aanbod</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
 
   <section id="prive">
     <div class="wrap">
-      <div class="reveal">
-        <p class="label">Privé</p>
-        <h2>Buiten kantoor.</h2>
-        <p class="lede" style="margin-bottom:0">Ik ben graag onderweg, het liefst met een motor of een goede auto. En ik hou van uitdagingen die niets met werk te maken hebben.</p>
-      </div>
+      <p class="label rv">Privé</p>
+      <h2 class="big rv">buiten k<i class="sw">A</i>ntoor.</h2>
+      <p class="lead rv">Ik ben graag onderweg, het liefst met een motor of een goede auto. En ik hou van uitdagingen die niets met werk te maken hebben.</p>
 
-      <div class="mosaic reveal">
+      <div class="mosaic rv">
         <figure class="m-big"><img src="assets/cayman.jpg" width="1600" height="1200" loading="lazy" alt="Zwarte Porsche Cayman bij zonsondergang op een dijk"><figcaption>Porsche Cayman</figcaption></figure>
         <figure><img src="assets/trip-vallei.jpg" width="1400" height="1050" loading="lazy" alt="Uitzicht over een bergvallei op de Balkan"><figcaption>Balkan, 2022</figcaption></figure>
         <figure><img src="assets/trip-zonsondergang.jpg" width="1400" height="1050" loading="lazy" alt="Zonsondergang aan de kust, gezien vanaf de motor"><figcaption>Kustroute</figcaption></figure>
@@ -390,46 +358,31 @@ footer a { text-decoration: none; border-bottom: 1px solid var(--line); }
         <figure><img src="assets/trip-motor.jpg" width="1000" height="750" loading="lazy" alt="Dashboard van een motor op een bospad"><figcaption>Op de motor</figcaption></figure>
       </div>
 
-      <div class="facts reveal">
-        <div class="fact">
-          <h3>Motorreizen</h3>
-          <p>In september 2022 reed ik met twee reisgenoten van Graz naar Kotor, dwars door de Balkan.</p>
-        </div>
-        <div class="fact">
-          <h3>Auto's en motoren</h3>
-          <p>Van een Citroën 2CV tot een Porsche Cayman en een Honda VFR. Ik hou van techniek die je kunt voelen.</p>
-        </div>
-        <div class="fact">
-          <h3>Indoor skydiven</h3>
-          <p>In april 2024 vloog ik bij City Skydive, vier keer op één avond.</p>
-        </div>
-        <div class="fact">
-          <h3>Triatlon</h3>
-          <p>Ik heb me ingeschreven voor de triatlon van Almere in 2027: zwemmen, fietsen en rennen.</p>
-        </div>
-        <div class="fact">
-          <h3>Running Blind</h3>
-          <p>Ik heb me aangemeld als buddyloper bij Running Blind, om samen met blinde en slechtziende hardlopers te rennen.</p>
-        </div>
+      <div class="facts rv">
+        <div class="fact"><h3>motorreizen</h3><p>In september 2022 reed ik met twee reisgenoten van Graz naar Kotor, dwars door de Balkan.</p></div>
+        <div class="fact"><h3>auto's en motoren</h3><p>Van een Citroën 2CV tot een Porsche Cayman en een Honda VFR. Ik hou van techniek die je kunt voelen.</p></div>
+        <div class="fact"><h3>indoor skydiven</h3><p>In april 2024 vloog ik bij City Skydive, vier keer op één avond.</p></div>
+        <div class="fact"><h3>triatlon</h3><p>Ik heb me ingeschreven voor de triatlon van Almere in 2027: zwemmen, fietsen en rennen.</p></div>
+        <div class="fact"><h3>running blind</h3><p>Ik heb me aangemeld als buddyloper bij Running Blind, om samen met blinde en slechtziende hardlopers te rennen.</p></div>
       </div>
-      <p class="hint">Meer momenten staan op <a href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>.</p>
+      <p class="note">Meer momenten staan op <a href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>.</p>
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <div class="wrap reveal">
-      <p class="label">Contact</p>
-      <h2>Zin om kennis te maken?</h2>
-      <a class="mailaddr" href="mailto:mail@martinvankaam.nl">mail@martinvankaam.nl</a>
-      <div class="cta">
-        <a class="btn primary" id="m-mail" href="mailto:mail@martinvankaam.nl">Open in Mail</a>
-        <a class="btn" id="m-gmail" data-app="gmail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Gmail</a>
-        <a class="btn" id="m-outlook" data-app="outlook" href="https://outlook.office.com/mail/deeplink/compose?to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Outlook</a>
-        <button class="btn" id="copy" type="button" data-addr="mail@martinvankaam.nl">Kopieer adres</button>
+  <section class="dark contact" id="contact">
+    <div class="wrap">
+      <p class="label rv">Contact</p>
+      <h2 class="rv">zin in een kennisma<i class="sw">K</i>ing?</h2>
+      <a class="mail rv" href="mailto:mail@martinvankaam.nl">mail@martinvankaam.nl</a>
+      <div class="row rv">
+        <a class="pill light" id="m-mail" href="mailto:mail@martinvankaam.nl">Open in Mail</a>
+        <a class="pill line" id="m-gmail" data-app="gmail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Gmail</a>
+        <a class="pill line" id="m-outlook" data-app="outlook" href="https://outlook.office.com/mail/deeplink/compose?to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Outlook</a>
+        <button class="pill line" id="copy" type="button" data-addr="mail@martinvankaam.nl">Kopieer adres</button>
       </div>
-      <div class="cta social">
-        <a class="btn small" href="https://www.linkedin.com/in/martinvankaam" rel="me noopener">LinkedIn</a>
-        <a class="btn small" href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>
+      <div class="row rv">
+        <a class="pill sandpill" href="https://www.linkedin.com/in/martinvankaam" rel="me noopener">LinkedIn</a>
+        <a class="pill sandpill" href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>
       </div>
     </div>
   </section>
@@ -508,13 +461,27 @@ footer a { text-decoration: none; border-bottom: 1px solid var(--line); }
     });
   }
 
-  var els = document.querySelectorAll(".reveal");
+  var btn = document.getElementById("menubtn");
+  var menu = document.getElementById("menu");
+  function setMenu(open) {
+    menu.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.textContent = open ? "Sluit" : "Menu";
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+  btn.addEventListener("click", function () { setMenu(!menu.classList.contains("open")); });
+  Array.prototype.forEach.call(menu.querySelectorAll("a"), function (a) {
+    a.addEventListener("click", function () { setMenu(false); });
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+
+  var els = document.querySelectorAll(".rv");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     Array.prototype.forEach.call(els, function (el) { io.observe(el); });
   } else {
     Array.prototype.forEach.call(els, function (el) { el.classList.add("in"); });
