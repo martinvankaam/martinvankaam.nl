@@ -79,7 +79,7 @@ a { color: inherit; }
   border-bottom: 1px solid var(--line);
 }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
-.brand { font-weight: 700; letter-spacing: .02em; text-decoration: none; }
+.brand { font-weight: 700; letter-spacing: .02em; text-decoration: none; white-space: nowrap; }
 .brand span { color: var(--sand-deep); }
 .top nav { display: flex; gap: 22px; font-size: 15px; }
 .top nav a { text-decoration: none; color: var(--muted); }
@@ -164,6 +164,25 @@ h2 { font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spacing: -.025
 .seek li::before { content: ""; position: absolute; left: 0; top: .72em; width: 14px; height: 2px; background: var(--sand); }
 .seek .range { font-size: 40px; font-weight: 800; letter-spacing: -.02em; color: var(--sand); line-height: 1.1; margin-bottom: 6px; }
 
+/* prive */
+.mosaic { display: grid; gap: 14px; margin-top: 40px; grid-template-columns: 1fr 1fr; }
+.mosaic figure { margin: 0; position: relative; border-radius: var(--radius); overflow: hidden; background: var(--line); aspect-ratio: 4 / 3; }
+.mosaic .m-big { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+.mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.mosaic figure:hover img { transform: scale(1.04); }
+.mosaic figcaption { position: absolute; left: 14px; bottom: 12px; font-size: 13px; font-weight: 600; color: #fff; background: rgba(12, 15, 23, .55); padding: 4px 11px; border-radius: 999px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+@media (min-width: 880px) {
+  .mosaic { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto auto; }
+  .mosaic .m-big { grid-column: 1 / 3; grid-row: 1 / 3; aspect-ratio: auto; }
+  .mosaic figure:not(.m-big) { aspect-ratio: 4 / 3; }
+}
+.facts { display: grid; gap: 14px; margin-top: 22px; }
+@media (min-width: 720px) { .facts { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .facts { grid-template-columns: repeat(3, 1fr); } }
+.fact { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; }
+.fact h3 { margin: 0 0 6px; font-size: 20px; letter-spacing: -.01em; }
+.fact p { margin: 0; color: var(--muted); font-size: 16px; }
+
 /* contact */
 .contact { text-align: left; }
 .mailaddr { display: inline-block; font-size: clamp(26px, 5.4vw, 60px); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; text-decoration: none; margin: 4px 0 30px; word-break: break-word; border-bottom: 4px solid var(--sand); }
@@ -182,7 +201,7 @@ footer a { text-decoration: none; border-bottom: 1px solid var(--line); }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
-  .card .ph img, .btn { transition: none; }
+  .card .ph img, .mosaic img, .btn { transition: none; }
 }
 </style>
 </head>
@@ -194,7 +213,8 @@ footer a { text-decoration: none; border-bottom: 1px solid var(--line); }
     <nav aria-label="Hoofdmenu">
       <a class="hide-sm" href="#over">Over mij</a>
       <a class="hide-sm" href="#trackrecord">Track record</a>
-      <a href="#portfolio">Portefeuille</a>
+      <a class="hide-sm" href="#portfolio">Portefeuille</a>
+      <a href="#prive">Privé</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -230,7 +250,7 @@ footer a { text-decoration: none; border-bottom: 1px solid var(--line); }
         <p class="big">Ik ben begonnen als ondernemer in zonnepanelen en groeide door naar vastgoed. Sinds 2024 werk ik er volledig in.</p>
         <p>Samen met Bas Kohlbrugge richtte ik Marbas op. Wij investeren voor eigen rekening in vastgoed met potentie: kantoren, bedrijfsruimten en multi-tenant gebouwen waar met de juiste aanpak meer in zit.</p>
         <p>Mijn rol is acquisitie, financiering en structurering. Ik bedenk bij aankoop het plan voor een pand en bewaak daarna of het rendement wordt gehaald. Bas zorgt dat dat plan in de praktijk wordt uitgevoerd.</p>
-        <p>Wat ik buiten werktijd doe, zie je op Instagram.</p>
+        <p>Buiten werktijd zit ik op de motor, heb ik iets met auto's of train ik voor een triatlon. <a href="#prive" style="border-bottom:1px solid var(--sand)">Meer over de privékant</a>.</p>
       </div>
     </div>
     <div class="wrap">
@@ -351,6 +371,48 @@ footer a { text-decoration: none; border-bottom: 1px solid var(--line); }
           </ul>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="prive">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="label">Privé</p>
+        <h2>Buiten kantoor.</h2>
+        <p class="lede" style="margin-bottom:0">Ik ben graag onderweg, het liefst met een motor of een goede auto. En ik hou van uitdagingen die niets met werk te maken hebben.</p>
+      </div>
+
+      <div class="mosaic reveal">
+        <figure class="m-big"><img src="assets/cayman.jpg" width="1600" height="1200" loading="lazy" alt="Zwarte Porsche Cayman bij zonsondergang op een dijk"><figcaption>Porsche Cayman</figcaption></figure>
+        <figure><img src="assets/trip-vallei.jpg" width="1400" height="1050" loading="lazy" alt="Uitzicht over een bergvallei op de Balkan"><figcaption>Balkan, 2022</figcaption></figure>
+        <figure><img src="assets/trip-zonsondergang.jpg" width="1400" height="1050" loading="lazy" alt="Zonsondergang aan de kust, gezien vanaf de motor"><figcaption>Kustroute</figcaption></figure>
+        <figure><img src="assets/trip-meer.jpg" width="1400" height="1050" loading="lazy" alt="Meer in een berglandschap"><figcaption>Onderweg, 2022</figcaption></figure>
+        <figure><img src="assets/trip-motor.jpg" width="1000" height="750" loading="lazy" alt="Dashboard van een motor op een bospad"><figcaption>Op de motor</figcaption></figure>
+      </div>
+
+      <div class="facts reveal">
+        <div class="fact">
+          <h3>Motorreizen</h3>
+          <p>In september 2022 reed ik met twee reisgenoten van Graz naar Kotor, dwars door de Balkan.</p>
+        </div>
+        <div class="fact">
+          <h3>Auto's en motoren</h3>
+          <p>Van een Citroën 2CV tot een Porsche Cayman en een Honda VFR. Ik hou van techniek die je kunt voelen.</p>
+        </div>
+        <div class="fact">
+          <h3>Indoor skydiven</h3>
+          <p>In april 2024 vloog ik bij City Skydive, vier keer op één avond.</p>
+        </div>
+        <div class="fact">
+          <h3>Triatlon</h3>
+          <p>Ik heb me ingeschreven voor de triatlon van Almere in 2027: zwemmen, fietsen en rennen.</p>
+        </div>
+        <div class="fact">
+          <h3>Running Blind</h3>
+          <p>Ik heb me aangemeld als buddyloper bij Running Blind, om samen met blinde en slechtziende hardlopers te rennen.</p>
+        </div>
+      </div>
+      <p class="hint">Meer momenten staan op <a href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>.</p>
     </div>
   </section>
 
