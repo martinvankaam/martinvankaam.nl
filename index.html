@@ -3,209 +3,461 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Martin van Kaam</title>
-<meta name="description" content="Martin van Kaam: ondernemer in vastgoed en beheer. Zakelijk en privé, kennismaken in één minuut.">
-<meta property="og:title" content="Martin van Kaam">
-<meta property="og:description" content="Ondernemer in vastgoed en beheer. Zakelijk en privé.">
+<title>Martin van Kaam | Ondernemer en vastgoedinvesteerder</title>
+<meta name="description" content="Martin van Kaam is ondernemer en managing partner bij Marbas. Vastgoed met potentie: acquisitie, financiering, structurering en beheer. Maak kennis.">
+<link rel="canonical" href="https://martinvankaam.nl/">
+<link rel="icon" href="assets/mb.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1a1f2e">
+<meta property="og:title" content="Martin van Kaam | Ondernemer en vastgoedinvesteerder">
+<meta property="og:description" content="Managing partner bij Marbas. Ik koop vastgoed met potentie en blijf erbij betrokken.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://martinvankaam.nl">
+<meta property="og:url" content="https://martinvankaam.nl/">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:image" content="https://martinvankaam.nl/assets/martin.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Martin van Kaam",
+  "url": "https://martinvankaam.nl/",
+  "image": "https://martinvankaam.nl/assets/martin.jpg",
+  "jobTitle": "Managing partner",
+  "worksFor": { "@type": "Organization", "name": "Marbas", "url": "https://www.marbas.nl" },
+  "email": "mailto:mail@martinvankaam.nl",
+  "sameAs": [
+    "https://www.linkedin.com/in/martinvankaam",
+    "https://www.instagram.com/martinvankaam"
+  ]
+}
+</script>
 <style>
 :root {
-  --bg: #faf8f4;
-  --card: #ffffff;
-  --text: #1f2933;
-  --muted: #5f6b76;
-  --accent: #1d4e5f;
-  --accent-soft: #e4eef1;
-  --line: #e3dfd6;
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #1a1f2e;
+  --muted: #5d6270;
+  --line: #ddd6ca;
+  --sand: #d4a574;
+  --sand-deep: #9c6b36;
+  --navy: #1a1f2e;
+  --on-navy: #f6f3ee;
+  --radius: 22px;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #14181b;
-    --card: #1c2226;
-    --text: #e8ecef;
-    --muted: #9aa6b0;
-    --accent: #7fc1d3;
-    --accent-soft: #223038;
-    --line: #2c353b;
+    --bg: #12151f;
+    --surface: #1a1f2e;
+    --ink: #f1ede6;
+    --muted: #a3a8b4;
+    --line: #2b3144;
+    --sand: #d4a574;
+    --sand-deep: #d4a574;
+    --navy: #0c0f17;
+    --on-navy: #f1ede6;
   }
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
 body {
   margin: 0;
   background: var(--bg);
-  color: var(--text);
-  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-a { color: var(--accent); }
-.wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
 
-header.hero { padding: 64px 0 40px; }
-.avatar {
-  width: 96px; height: 96px; border-radius: 50%;
-  background: var(--accent); color: var(--bg);
-  display: grid; place-items: center;
-  font-size: 34px; font-weight: 600; letter-spacing: 1px;
-  margin-bottom: 24px;
+/* header */
+.top {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid var(--line);
 }
-h1 { font-size: clamp(34px, 7vw, 48px); line-height: 1.1; margin: 0 0 12px; }
-.lead { font-size: 21px; color: var(--muted); margin: 0 0 28px; }
-.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+.brand { font-weight: 700; letter-spacing: .02em; text-decoration: none; }
+.brand span { color: var(--sand-deep); }
+.top nav { display: flex; gap: 22px; font-size: 15px; }
+.top nav a { text-decoration: none; color: var(--muted); }
+.top nav a:hover { color: var(--ink); }
+@media (max-width: 640px) {
+  .top nav { gap: 14px; font-size: 14px; }
+  .top nav a.hide-sm { display: none; }
+}
+
+/* hero */
+.hero { padding: 56px 0 72px; }
+.hero .wrap { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 880px) { .hero .wrap { grid-template-columns: 1.25fr 1fr; gap: 64px; } }
+.kicker { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--sand-deep); font-weight: 600; margin: 0 0 18px; }
+h1 { font-size: clamp(40px, 7.4vw, 82px); line-height: 1.02; letter-spacing: -.03em; margin: 0 0 24px; font-weight: 800; }
+h1 .x { color: var(--sand-deep); font-weight: 400; }
+.lede { font-size: clamp(19px, 2.4vw, 23px); line-height: 1.5; color: var(--muted); max-width: 34em; margin: 0 0 32px; }
+.portrait { border-radius: var(--radius); overflow: hidden; background: var(--line); aspect-ratio: 4 / 5; max-width: 460px; justify-self: end; width: 100%; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+@media (max-width: 879px) { .portrait { justify-self: start; max-width: 100%; aspect-ratio: 4 / 4.4; } }
+
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn {
-  display: inline-block; padding: 10px 18px; border-radius: 999px;
-  border: 1px solid var(--line); background: var(--card);
-  color: var(--text); text-decoration: none; font-weight: 500; font-size: 15px;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 13px 24px; border-radius: 999px; font: inherit; font-size: 16px; font-weight: 600;
+  text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer;
+  transition: transform .15s ease, background .15s ease, color .15s ease;
 }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
-.btn:hover { border-color: var(--accent); }
+.btn:hover { transform: translateY(-1px); }
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn.small { padding: 10px 18px; font-size: 15px; }
 
-nav.jump { display: flex; gap: 18px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 15px; }
-nav.jump a { text-decoration: none; color: var(--muted); }
-nav.jump a:hover { color: var(--accent); }
+/* sections */
+section { padding: 88px 0; border-top: 1px solid var(--line); }
+.label { font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--sand-deep); font-weight: 700; margin: 0 0 14px; }
+h2 { font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spacing: -.025em; margin: 0 0 22px; font-weight: 800; max-width: 18em; }
+.two { display: grid; gap: 36px; }
+@media (min-width: 880px) { .two { grid-template-columns: 5fr 7fr; gap: 72px; } }
+.prose p { margin: 0 0 18px; font-size: 18px; }
+.prose p.big { font-size: clamp(21px, 2.6vw, 26px); line-height: 1.45; letter-spacing: -.01em; }
 
-section { padding: 48px 0 8px; }
-h2 { font-size: 26px; margin: 0 0 8px; }
-.sub { color: var(--muted); margin: 0 0 24px; }
+/* stats */
+.stats { display: grid; gap: 14px; margin-top: 44px; }
+@media (min-width: 640px) { .stats { grid-template-columns: repeat(3, 1fr); } }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; }
+.stat b { display: block; font-size: 38px; line-height: 1.1; letter-spacing: -.02em; }
+.stat span { color: var(--muted); font-size: 15px; }
 
-.quick { display: grid; gap: 14px; margin: 0 0 24px; }
-@media (min-width: 600px) { .quick { grid-template-columns: repeat(3, 1fr); } }
-.quick div { background: var(--accent-soft); border-radius: 14px; padding: 16px 18px; }
-.quick strong { display: block; font-size: 15px; color: var(--accent); margin-bottom: 4px; }
-.quick span { font-size: 15px; }
+/* timeline */
+.timeline { list-style: none; margin: 40px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.timeline li { display: grid; gap: 4px 28px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+@media (min-width: 720px) { .timeline li { grid-template-columns: 140px 1fr; } }
+.timeline .yr { font-size: 28px; font-weight: 800; letter-spacing: -.02em; color: var(--sand-deep); line-height: 1.2; }
+.timeline h3 { margin: 0 0 4px; font-size: 20px; letter-spacing: -.01em; }
+.timeline p { margin: 0; color: var(--muted); }
+.timeline li.now .yr::after { content: "nu"; margin-left: 10px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; background: var(--sand); color: #1a1f2e; padding: 3px 9px; border-radius: 999px; vertical-align: middle; }
 
-details {
-  background: var(--card); border: 1px solid var(--line);
-  border-radius: 14px; margin: 0 0 12px; padding: 0 20px;
+/* portfolio */
+.cards { display: grid; gap: 22px; margin-top: 40px; }
+@media (min-width: 880px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.card .ph { aspect-ratio: 4 / 3; overflow: hidden; background: var(--line); }
+.card .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.card:hover .ph img { transform: scale(1.04); }
+.card .body { padding: 22px 24px 26px; }
+.card .tag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--sand-deep); font-weight: 700; margin: 0 0 8px; }
+.card h3 { margin: 0 0 8px; font-size: 24px; letter-spacing: -.015em; }
+.card p { margin: 0; color: var(--muted); font-size: 16px; }
+.banner { margin-top: 22px; border-radius: var(--radius); overflow: hidden; aspect-ratio: 21 / 9; background: var(--line); }
+.banner img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 640px) { .banner { aspect-ratio: 4 / 3; } }
+
+/* expertise + zoek */
+.tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 0; padding: 0; list-style: none; }
+.tags li { border: 1.5px solid var(--ink); border-radius: 999px; padding: 8px 18px; font-weight: 600; font-size: 16px; }
+.seek { background: var(--navy); color: var(--on-navy); border-radius: var(--radius); padding: 40px 32px; margin-top: 48px; display: grid; gap: 28px; }
+@media (min-width: 880px) { .seek { grid-template-columns: 1fr 1fr; padding: 52px 56px; gap: 56px; } }
+.seek h3 { margin: 0 0 12px; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.15; letter-spacing: -.02em; }
+.seek p { margin: 0; color: color-mix(in srgb, var(--on-navy) 75%, transparent); }
+.seek ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.seek li { padding-left: 26px; position: relative; }
+.seek li::before { content: ""; position: absolute; left: 0; top: .72em; width: 14px; height: 2px; background: var(--sand); }
+.seek .range { font-size: 40px; font-weight: 800; letter-spacing: -.02em; color: var(--sand); line-height: 1.1; margin-bottom: 6px; }
+
+/* contact */
+.contact { text-align: left; }
+.mailaddr { display: inline-block; font-size: clamp(26px, 5.4vw, 60px); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; text-decoration: none; margin: 4px 0 30px; word-break: break-word; border-bottom: 4px solid var(--sand); }
+.mailaddr:hover { color: var(--sand-deep); }
+.contact .cta { margin-bottom: 14px; }
+.contact .social { margin-top: 26px; }
+.hint { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+
+footer { padding: 36px 0 52px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+footer a { text-decoration: none; border-bottom: 1px solid var(--line); }
+
+/* reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+  .card .ph img, .btn { transition: none; }
 }
-summary {
-  cursor: pointer; padding: 16px 0; font-weight: 600; list-style: none;
-  display: flex; justify-content: space-between; gap: 12px;
-}
-summary::-webkit-details-marker { display: none; }
-summary::after { content: "+"; color: var(--accent); font-size: 22px; line-height: 1; }
-details[open] summary::after { content: "\2212"; }
-details p { margin: 0 0 16px; color: var(--muted); }
-
-.mailaddr { font-size: 20px; font-weight: 600; margin: 0 0 16px; user-select: all; }
-.links.social { margin-top: 12px; }
-button.btn { font: inherit; font-size: 15px; font-weight: 500; cursor: pointer; }
-
-footer { padding: 56px 0 48px; color: var(--muted); font-size: 14px; }
 </style>
 </head>
 <body>
 
-<header class="hero">
+<header class="top">
   <div class="wrap">
-    <div class="avatar" aria-hidden="true">MK</div>
-    <h1>Martin van Kaam</h1>
-    <p class="lead">Ondernemer in vastgoed en beheer. Ik bouw, beheer en verbeter dingen, zakelijk en privé.</p>
-    <div class="links">
-      <a class="btn primary" href="mailto:mail@martinvankaam.nl">Mail me</a>
-      <a class="btn" href="https://www.linkedin.com/in/martinvankaam" rel="me noopener">LinkedIn</a>
-      <a class="btn" href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>
-    </div>
+    <a class="brand" href="#top">Martin van Kaam<span>.</span></a>
+    <nav aria-label="Hoofdmenu">
+      <a class="hide-sm" href="#over">Over mij</a>
+      <a class="hide-sm" href="#trackrecord">Track record</a>
+      <a href="#portfolio">Portefeuille</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
 </header>
 
-<div class="wrap">
-  <nav class="jump" aria-label="Snel naar">
-    <a href="#kort">In het kort</a>
-    <a href="#zakelijk">Zakelijk</a>
-    <a href="#prive">Privé</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</div>
+<main id="top">
 
-<main class="wrap">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="kicker">Martin van Kaam</p>
+        <h1>Ondernemer <span class="x">x</span> Investeerder <span class="x">x</span> Vastgoed</h1>
+        <p class="lede">Managing partner bij Marbas. Ik koop vastgoed met potentie en blijf erbij betrokken, van aankoop tot dagelijks beheer.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Maak kennis</a>
+          <a class="btn" href="https://www.linkedin.com/in/martinvankaam" rel="me noopener">LinkedIn</a>
+          <a class="btn" href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <img src="assets/martin.jpg" width="933" height="1400" alt="Portret van Martin van Kaam" fetchpriority="high">
+      </div>
+    </div>
+  </div>
 
-  <section id="kort">
-    <h2>In het kort</h2>
-    <p class="sub">De scan van één minuut.</p>
-    <div class="quick">
-      <div><strong>Wat ik doe</strong><span>Vastgoed, beheer en projecten</span></div>
-      <div><strong>Waar</strong><span>Nederland</span></div>
-      <div><strong>Waar ik van hou</strong><span>Dingen die goed werken</span></div>
+  <section id="over">
+    <div class="wrap two">
+      <div class="reveal">
+        <p class="label">Over mij</p>
+        <h2>Bouwen, beheren en verbeteren.</h2>
+      </div>
+      <div class="prose reveal">
+        <p class="big">Ik ben begonnen als ondernemer in zonnepanelen en groeide door naar vastgoed. Sinds 2024 werk ik er volledig in.</p>
+        <p>Samen met Bas Kohlbrugge richtte ik Marbas op. Wij investeren voor eigen rekening in vastgoed met potentie: kantoren, bedrijfsruimten en multi-tenant gebouwen waar met de juiste aanpak meer in zit.</p>
+        <p>Mijn rol is acquisitie, financiering en structurering. Ik bedenk bij aankoop het plan voor een pand en bewaak daarna of het rendement wordt gehaald. Bas zorgt dat dat plan in de praktijk wordt uitgevoerd.</p>
+        <p>Wat ik buiten werktijd doe, zie je op Instagram.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="stats reveal">
+        <div class="stat"><b>Ruim 120</b><span>objecten in beheer</span></div>
+        <div class="stat"><b>7.000+ m²</b><span>verhuurbaar oppervlak</span></div>
+        <div class="stat"><b>Sinds 2013</b><span>ondernemer</span></div>
+      </div>
     </div>
   </section>
 
-  <section id="zakelijk">
-    <h2>Zakelijk</h2>
-    <p class="sub">Klik een onderwerp open voor meer.</p>
-
-    <details>
-      <summary>Wat ik doe</summary>
-      <p>Ik ben ondernemer in vastgoed en beheer. Via Marbas Groep houd ik me bezig met gebouwen, verhuur, projecten en de bedrijven daaromheen. Concepttekst: dit vul ik samen met je aan.</p>
-    </details>
-    <details>
-      <summary>Hoe ik werk</summary>
-      <p>Concreet, direct en met oog voor detail. Eerst duidelijk krijgen wat er speelt, dan zorgen dat het geregeld is. Concepttekst.</p>
-    </details>
-    <details>
-      <summary>Waar ik mee bezig ben</summary>
-      <p>Lopende projecten, gebouwen en verbeteringen in beheer en administratie. Concepttekst.</p>
-    </details>
-  </section>
-
-  <section id="prive">
-    <h2>Privé</h2>
-    <p class="sub">De kant buiten werktijd.</p>
-
-    <details>
-      <summary>Wie ik ben</summary>
-      <p>Naast ondernemer ben ik gewoon Martin. Concepttekst: hier komt een paar regels over wat je bezighoudt.</p>
-    </details>
-    <details>
-      <summary>Wat ik graag doe</summary>
-      <p>Reizen, uitzoeken hoe dingen werken en tijd met mensen die me dierbaar zijn. Concepttekst.</p>
-    </details>
-    <details>
-      <summary>Foto's en momenten</summary>
-      <p>Hier komen later foto's en een koppeling naar Instagram.</p>
-    </details>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p class="sub">Zin om kennis te maken? Stuur gerust een bericht.</p>
-    <p class="mailaddr">mail@martinvankaam.nl</p>
-    <div class="links">
-      <a class="btn primary" href="mailto:mail@martinvankaam.nl">Open in Mail</a>
-      <a class="btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Gmail</a>
-      <a class="btn" href="https://outlook.office.com/mail/deeplink/compose?to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Outlook</a>
-      <button class="btn" id="copy" type="button" data-addr="mail@martinvankaam.nl">Kopieer adres</button>
+  <section id="trackrecord">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="label">Track record</p>
+        <h2>Van zonnepanelen tot een eigen vastgoedportefeuille.</h2>
+      </div>
+      <ol class="timeline reveal">
+        <li>
+          <div class="yr">2013</div>
+          <div><h3>MB Solar</h3><p>Mijn eerste onderneming: verkoop en installatie van zonnepanelen.</p></div>
+        </li>
+        <li>
+          <div class="yr">2019</div>
+          <div><h3>Marbas en Embeka</h3><p>Ik kies voor volledig ondernemerschap. Marbas wordt opgericht, en Embeka verzorgt vastgoedbeheer en onderhoud voor woningcorporaties.</p></div>
+        </li>
+        <li>
+          <div class="yr">2020</div>
+          <div><h3>Bemtech en eigen pand</h3><p>Bemtech volgt MB Solar op. Voor de huisvesting koop ik het bedrijfspand aan de Bolderweg.</p></div>
+        </li>
+        <li>
+          <div class="yr">2021</div>
+          <div><h3>Argonweg</h3><p>Marbas koopt het pand aan de Argonweg waar Embeka eerder huurde.</p></div>
+        </li>
+        <li>
+          <div class="yr">2024</div>
+          <div><h3>Volledig vastgoed</h3><p>De portefeuille wordt getaxeerd en geherfinancierd. Vanaf dan richt ik me volledig op vastgoed.</p></div>
+        </li>
+        <li>
+          <div class="yr">2025</div>
+          <div><h3>De Bunker, Haarlem</h3><p>Aankoop van het multi-tenant gebouw aan de Tappersweg, na een korte durffinanciering, taxatie en herfinanciering.</p></div>
+        </li>
+        <li class="now">
+          <div class="yr">2026</div>
+          <div><h3>Silverpoint, Almere</h3><p>Aankoop met durfkapitaal. Het pand wordt getransformeerd en voorzien van stabiele huurders.</p></div>
+        </li>
+      </ol>
     </div>
-    <div class="links social">
-      <a class="btn" href="https://www.linkedin.com/in/martinvankaam" rel="me noopener">LinkedIn</a>
-      <a class="btn" href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>
+  </section>
+
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="label">Portefeuille</p>
+        <h2>Gebouwen waar ik aan werk.</h2>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="ph"><img src="assets/silverpoint.jpg" width="1600" height="1066" loading="lazy" alt="Kantoorgebouw Silverpoint in Almere"></div>
+          <div class="body">
+            <p class="tag">Almere</p>
+            <h3>Silverpoint</h3>
+            <p>Multi-tenant kantoor. Exploitatie en optimalisatie, met een transformatie naar een gebouw vol stabiele huurders.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="ph"><img src="assets/de-bunker.jpg" width="1600" height="1066" loading="lazy" alt="Gebouw De Bunker in Haarlem"></div>
+          <div class="body">
+            <p class="tag">Haarlem</p>
+            <h3>De Bunker</h3>
+            <p>Multi-tenant gebouw aan de Tappersweg met kantoren, studio's en ateliers. In exploitatie.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="ph"><img src="assets/garagebox.jpg" width="1066" height="1600" loading="lazy" alt="Garagebox aan de Tappersweg in Haarlem"></div>
+          <div class="body">
+            <p class="tag">Haarlem</p>
+            <h3>Garagebox Tappersweg</h3>
+            <p>Garageboxen naast De Bunker. Eenvoudig, stabiel en in exploitatie.</p>
+          </div>
+        </article>
+      </div>
+      <div class="banner reveal"><img src="assets/almere-lucht.jpg" width="1600" height="1066" loading="lazy" alt="Luchtfoto van Silverpoint in Almere"></div>
+      <p class="hint">Meer over het vastgoed en de werkwijze: <a href="https://www.marbas.nl" rel="noopener">marbas.nl</a></p>
+    </div>
+  </section>
+
+  <section id="expertise">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="label">Expertise</p>
+        <h2>Waar ik goed in ben.</h2>
+        <ul class="tags">
+          <li>Acquisitie</li>
+          <li>Financiering</li>
+          <li>Structurering</li>
+          <li>Asset management</li>
+          <li>Verhuur</li>
+          <li>Beheer</li>
+          <li>Transformatie</li>
+          <li>Multi-tenant objecten</li>
+        </ul>
+      </div>
+      <div class="seek reveal">
+        <div>
+          <p class="label" style="color: var(--sand)">Acquisitieprofiel</p>
+          <h3>Heb je vastgoed met potentie?</h3>
+          <p>Ik denk graag mee, ook als het nog niet op de markt is.</p>
+        </div>
+        <div>
+          <div class="range">€3 tot €12 miljoen</div>
+          <p style="margin-bottom: 18px">Focus. Instap vanaf circa €1 miljoen.</p>
+          <ul>
+            <li>Multi-tenant objecten</li>
+            <li>Portefeuilles</li>
+            <li>Objecten met leegstand</li>
+            <li>Off-market aanbod</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap reveal">
+      <p class="label">Contact</p>
+      <h2>Zin om kennis te maken?</h2>
+      <a class="mailaddr" href="mailto:mail@martinvankaam.nl">mail@martinvankaam.nl</a>
+      <div class="cta">
+        <a class="btn primary" id="m-mail" href="mailto:mail@martinvankaam.nl">Open in Mail</a>
+        <a class="btn" id="m-gmail" data-app="gmail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Gmail</a>
+        <a class="btn" id="m-outlook" data-app="outlook" href="https://outlook.office.com/mail/deeplink/compose?to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Outlook</a>
+        <button class="btn" id="copy" type="button" data-addr="mail@martinvankaam.nl">Kopieer adres</button>
+      </div>
+      <div class="cta social">
+        <a class="btn small" href="https://www.linkedin.com/in/martinvankaam" rel="me noopener">LinkedIn</a>
+        <a class="btn small" href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>
+      </div>
     </div>
   </section>
 
 </main>
 
 <footer>
-  <div class="wrap">&copy; 2026 Martin van Kaam</div>
+  <div class="wrap">
+    <span>&copy; 2026 Martin van Kaam</span>
+    <span>Managing partner bij <a href="https://www.marbas.nl" rel="noopener">Marbas</a></span>
+  </div>
 </footer>
 
 <script>
 (function () {
-  var btn = document.getElementById("copy");
-  if (!btn) return;
-  btn.addEventListener("click", function () {
-    var addr = btn.getAttribute("data-addr");
-    var done = function () {
-      btn.textContent = "Gekopieerd";
-      setTimeout(function () { btn.textContent = "Kopieer adres"; }, 2000);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(addr).then(done, function () { window.prompt("Kopieer dit adres:", addr); });
-    } else {
-      window.prompt("Kopieer dit adres:", addr);
+  var ADDR = "mail@martinvankaam.nl";
+  var ua = navigator.userAgent;
+  var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var android = /Android/.test(ua);
+
+  var apps = {
+    gmail: {
+      web: "https://mail.google.com/mail/?view=cm&fs=1&to=" + ADDR,
+      ios: "googlegmail:///co?to=" + ADDR,
+      pkg: "com.google.android.gm"
+    },
+    outlook: {
+      web: "https://outlook.office.com/mail/deeplink/compose?to=" + ADDR,
+      ios: "ms-outlook://compose?to=" + ADDR,
+      pkg: "com.microsoft.office.outlook"
     }
+  };
+
+  function openApp(name) {
+    var a = apps[name];
+    if (ios) {
+      var left = false;
+      var onVis = function () { if (document.hidden) left = true; };
+      document.addEventListener("visibilitychange", onVis);
+      var f = document.createElement("iframe");
+      f.style.display = "none";
+      f.src = a.ios;
+      document.body.appendChild(f);
+      setTimeout(function () {
+        document.removeEventListener("visibilitychange", onVis);
+        if (f.parentNode) f.parentNode.removeChild(f);
+        if (!left) window.location.href = a.web;
+      }, 1300);
+    } else if (android) {
+      window.location.href = "intent:#Intent;action=android.intent.action.SENDTO;data=mailto:" + ADDR +
+        ";package=" + a.pkg + ";S.browser_fallback_url=" + encodeURIComponent(a.web) + ";end";
+    } else {
+      window.open(a.web, "_blank", "noopener");
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-app]"), function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      openApp(el.getAttribute("data-app"));
+    });
   });
+
+  var copy = document.getElementById("copy");
+  if (copy) {
+    copy.addEventListener("click", function () {
+      var done = function () {
+        copy.textContent = "Gekopieerd";
+        setTimeout(function () { copy.textContent = "Kopieer adres"; }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ADDR).then(done, function () { window.prompt("Kopieer dit adres:", ADDR); });
+      } else {
+        window.prompt("Kopieer dit adres:", ADDR);
+      }
+    });
+  }
+
+  var els = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    Array.prototype.forEach.call(els, function (el) { io.observe(el); });
+  } else {
+    Array.prototype.forEach.call(els, function (el) { el.classList.add("in"); });
+  }
 })();
 </script>
-
 </body>
 </html>
