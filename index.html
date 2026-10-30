@@ -87,6 +87,10 @@ summary::after { content: "+"; color: var(--accent); font-size: 22px; line-heigh
 details[open] summary::after { content: "\2212"; }
 details p { margin: 0 0 16px; color: var(--muted); }
 
+.mailaddr { font-size: 20px; font-weight: 600; margin: 0 0 16px; user-select: all; }
+.links.social { margin-top: 12px; }
+button.btn { font: inherit; font-size: 15px; font-weight: 500; cursor: pointer; }
+
 footer { padding: 56px 0 48px; color: var(--muted); font-size: 14px; }
 </style>
 </head>
@@ -165,8 +169,14 @@ footer { padding: 56px 0 48px; color: var(--muted); font-size: 14px; }
   <section id="contact">
     <h2>Contact</h2>
     <p class="sub">Zin om kennis te maken? Stuur gerust een bericht.</p>
+    <p class="mailaddr">mail@martinvankaam.nl</p>
     <div class="links">
-      <a class="btn primary" href="mailto:mail@martinvankaam.nl">mail@martinvankaam.nl</a>
+      <a class="btn primary" href="mailto:mail@martinvankaam.nl">Open in Mail</a>
+      <a class="btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Gmail</a>
+      <a class="btn" href="https://outlook.office.com/mail/deeplink/compose?to=mail@martinvankaam.nl" target="_blank" rel="noopener">Open in Outlook</a>
+      <button class="btn" id="copy" type="button" data-addr="mail@martinvankaam.nl">Kopieer adres</button>
+    </div>
+    <div class="links social">
       <a class="btn" href="https://www.linkedin.com/in/martinvankaam" rel="me noopener">LinkedIn</a>
       <a class="btn" href="https://www.instagram.com/martinvankaam" rel="me noopener">Instagram</a>
     </div>
@@ -177,6 +187,25 @@ footer { padding: 56px 0 48px; color: var(--muted); font-size: 14px; }
 <footer>
   <div class="wrap">&copy; 2026 Martin van Kaam</div>
 </footer>
+
+<script>
+(function () {
+  var btn = document.getElementById("copy");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    var addr = btn.getAttribute("data-addr");
+    var done = function () {
+      btn.textContent = "Gekopieerd";
+      setTimeout(function () { btn.textContent = "Kopieer adres"; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(addr).then(done, function () { window.prompt("Kopieer dit adres:", addr); });
+    } else {
+      window.prompt("Kopieer dit adres:", addr);
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
