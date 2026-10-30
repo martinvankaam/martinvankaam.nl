@@ -1,0 +1,8 @@
+{
+  "default": "nl",
+  "site": "https://martinvankaam.nl",
+  "languages": [
+    { "code": "nl", "path": "/", "name": "Nederlands", "short": "NL", "locale": "nl_NL" },
+    { "code": "en", "path": "/en/", "name": "English", "short": "EN", "locale": "en_GB" }
+  ]
+}

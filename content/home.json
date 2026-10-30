@@ -1,0 +1,168 @@
+{
+  "nl": {
+    "hero": {
+      "kicker": "Ondernemer in vastgoed",
+      "name": "Martin van Kaam",
+      "lead": "Ik koop vastgoed met potentie en regel de financiering, samen met Bas Kohlbrugge bij Marbas. Ik begon in 2013 met zonnepanelen en werk sinds 2024 volledig in vastgoed.",
+      "sub": "Op deze pagina staat mijn werk, en ook wat daarnaast gebeurt.",
+      "ctaContact": "Stuur een bericht",
+      "ctaTimeline": "Bekijk de tijdlijn",
+      "imageAlt": "Martin van Kaam in een donkerblauw overhemd, buiten voor een bakstenen gebouw"
+    },
+    "work": {
+      "title": "Wat ik doe bij Marbas",
+      "paragraphs": [
+        "Marbas is een vastgoedboetiek die ik samen met Bas Kohlbrugge heb opgericht. We investeren voor eigen rekening in vastgoed met potentie en blijven erbij betrokken, van aankoop tot beheer.",
+        "Mijn deel is het begin. Ik zoek en beoordeel objecten, regel de financiering en de structuur en bepaal het plan voor wat we ermee gaan doen. Daarna houd ik in de gaten of de portefeuille presteert zoals bedacht.",
+        "Bas zet dat plan om in de praktijk: verhuur, rendement en optimalisatie. Het beheer houden we dichtbij, zodat huurders een vast aanspreekpunt hebben en meldingen snel worden opgepakt."
+      ],
+      "facts": [
+        { "value": "120+", "label": "objecten in beheer" },
+        { "value": "7.000 m²", "label": "verhuurbaar oppervlak" },
+        { "value": "2013", "label": "ondernemer sinds" }
+      ]
+    },
+    "buildings": {
+      "title": "Gebouwen waar we mee werken",
+      "intro": "Kantoren, studio's en ateliers, vooral multi-tenant objecten. Een greep uit de portefeuille.",
+      "items": [
+        {
+          "id": "silverpoint",
+          "name": "Silverpoint",
+          "place": "Almere",
+          "text": "Multi-tenant kantoor. We verbeteren de exploitatie en transformeren het gebouw naar een pand met stabiele huurders.",
+          "image": "silverpoint",
+          "imageAlt": "Wit kantoorgebouw Silverpoint in Almere met een bakstenen vloer ervoor"
+        },
+        {
+          "id": "de-bunker",
+          "name": "De Bunker",
+          "place": "Haarlem",
+          "text": "Multi-tenant gebouw aan de Tappersweg met kantoren, studio's en ateliers. In exploitatie.",
+          "image": "de-bunker",
+          "imageAlt": "Donkergrijs gebouw De Bunker in Haarlem met een lichte zijgevel"
+        },
+        {
+          "id": "garageboxen",
+          "name": "Garageboxen Tappersweg",
+          "place": "Haarlem",
+          "text": "Garageboxen naast De Bunker. Eenvoudig, stabiel en in exploitatie.",
+          "image": "garagebox",
+          "imageAlt": "Blauwe garagedeur in een golfplaten gevel"
+        }
+      ],
+      "link": "Meer over het vastgoed en de werkwijze staat op",
+      "linkText": "marbas.nl"
+    },
+    "timeline": {
+      "title": "Tijdlijn",
+      "lead": "Werk, opleiding en wat ik daarnaast doe, in één stroom. Filter op onderwerp, of laat alles staan.",
+      "note": "Sommige momenten zijn nog kort. De tijdlijn groeit mee."
+    },
+    "acquisition": {
+      "title": "Acquisitieprofiel",
+      "lead": "Marbas zoekt vastgoed met potentie, ook buiten de markt om.",
+      "entryLabel": "Instap",
+      "entryValue": "vanaf circa €1 miljoen",
+      "focusLabel": "Focus",
+      "focusValue": "€3 tot €12 miljoen",
+      "listTitle": "Waar we naar kijken",
+      "list": [
+        "Multi-tenant objecten",
+        "Portefeuilles",
+        "Objecten met leegstand",
+        "Off-market aanbod"
+      ],
+      "closing": "Past er iets, of wil je eerst even meedenken? Stuur me gerust een bericht."
+    },
+    "contact": {
+      "title": "Zin om kennis te maken?",
+      "lead": "Stuur een mail, of kijk waar ik nog meer te vinden ben.",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
+    }
+  },
+  "en": {
+    "hero": {
+      "kicker": "Real estate entrepreneur",
+      "name": "Martin van Kaam",
+      "lead": "I buy real estate with potential and arrange the financing, together with Bas Kohlbrugge at Marbas. I started in 2013 with solar panels and have worked full time in real estate since 2024.",
+      "sub": "This page shows my work, and what happens alongside it.",
+      "ctaContact": "Send a message",
+      "ctaTimeline": "See the timeline",
+      "imageAlt": "Martin van Kaam in a dark blue shirt, outdoors in front of a brick building"
+    },
+    "work": {
+      "title": "What I do at Marbas",
+      "paragraphs": [
+        "Marbas is a real estate boutique that I founded with Bas Kohlbrugge. We invest our own capital in properties with potential and stay involved after the purchase, from acquisition to management.",
+        "My part is the start. I search for and assess properties, arrange the financing and structure, and set the plan for what we will do with each one. After that I keep an eye on whether the portfolio performs as planned.",
+        "Bas turns that plan into practice: letting, returns and optimisation. We keep management close, so tenants have one point of contact and issues are picked up quickly."
+      ],
+      "facts": [
+        { "value": "120+", "label": "properties under management" },
+        { "value": "7,000 m²", "label": "lettable floor area" },
+        { "value": "2013", "label": "entrepreneur since" }
+      ]
+    },
+    "buildings": {
+      "title": "Buildings we work with",
+      "intro": "Offices, studios and workshops, mostly multi-tenant properties. A selection from the portfolio.",
+      "items": [
+        {
+          "id": "silverpoint",
+          "name": "Silverpoint",
+          "place": "Almere",
+          "text": "Multi-tenant office building. We are improving operations and transforming the building into a property with stable tenants.",
+          "image": "silverpoint",
+          "imageAlt": "White office building Silverpoint in Almere with a brick-paved area in front"
+        },
+        {
+          "id": "de-bunker",
+          "name": "De Bunker",
+          "place": "Haarlem",
+          "text": "Multi-tenant building on the Tappersweg with offices, studios and workshops. In operation.",
+          "image": "de-bunker",
+          "imageAlt": "Dark grey building De Bunker in Haarlem with a light side facade"
+        },
+        {
+          "id": "garageboxen",
+          "name": "Garage units Tappersweg",
+          "place": "Haarlem",
+          "text": "Garage units next to De Bunker. Simple, stable and in operation.",
+          "image": "garagebox",
+          "imageAlt": "Blue garage door in a corrugated metal facade"
+        }
+      ],
+      "link": "More about the properties and our approach at",
+      "linkText": "marbas.nl"
+    },
+    "timeline": {
+      "title": "Timeline",
+      "lead": "Work, education and what I do alongside it, in one stream. Filter by topic, or leave everything on.",
+      "note": "Some moments are still short. The timeline grows over time."
+    },
+    "acquisition": {
+      "title": "Acquisition profile",
+      "lead": "Marbas looks for real estate with potential, including off-market opportunities.",
+      "entryLabel": "Entry point",
+      "entryValue": "from about €1 million",
+      "focusLabel": "Focus",
+      "focusValue": "€3 to €12 million",
+      "listTitle": "What we look at",
+      "list": [
+        "Multi-tenant properties",
+        "Portfolios",
+        "Properties with vacancy",
+        "Off-market opportunities"
+      ],
+      "closing": "Do you have something that fits, or want to think it through first? Feel free to send me a message."
+    },
+    "contact": {
+      "title": "Want to get in touch?",
+      "lead": "Send an email, or see where else you can find me.",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
+    }
+  }
+}

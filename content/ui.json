@@ -1,0 +1,96 @@
+{
+  "nl": {
+    "meta": {
+      "title": "Martin van Kaam | Ondernemer en vastgoedinvesteerder",
+      "description": "Martin van Kaam is ondernemer en managing partner bij Marbas. Hij koopt vastgoed met potentie, regelt de financiering en blijft betrokken bij exploitatie en beheer. Met een tijdlijn van werk, opleiding en wat daarnaast gebeurt.",
+      "ogTitle": "Martin van Kaam | Ondernemer en vastgoedinvesteerder",
+      "ogDescription": "Managing partner bij Marbas. Vastgoed met potentie, van aankoop tot beheer, en de tijdlijn van mijn werk en leven.",
+      "ogImageAlt": "Martin van Kaam in een donkerblauw overhemd",
+      "jobTitle": "Managing partner"
+    },
+    "skip": "Naar de inhoud",
+    "nav": {
+      "label": "Hoofdmenu",
+      "work": "Wat ik doe",
+      "timeline": "Tijdlijn",
+      "acquisition": "Acquisitie",
+      "contact": "Contact"
+    },
+    "language": { "label": "Taal", "switchTo": "Switch to English" },
+    "categories": {
+      "career": "Carrière",
+      "education": "Opleiding",
+      "travel": "Reizen",
+      "sport": "Sport",
+      "motors": "Auto's en motoren",
+      "life": "Levensmomenten"
+    },
+    "timeline": {
+      "all": "Alles",
+      "filterLabel": "Filter de tijdlijn op onderwerp",
+      "count": "{shown} van {total} momenten",
+      "more": "Meer over dit moment",
+      "planned": "Gepland",
+      "photoCount": "foto's"
+    },
+    "mail": {
+      "openMail": "Open in Mail",
+      "openGmail": "Open in Gmail",
+      "openOutlook": "Open in Outlook",
+      "copy": "Kopieer adres",
+      "copied": "Gekopieerd",
+      "copyPrompt": "Kopieer dit adres:"
+    },
+    "footer": {
+      "rights": "© 2026 Martin van Kaam",
+      "role": "Managing partner bij"
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "Martin van Kaam | Entrepreneur and real estate investor",
+      "description": "Martin van Kaam is an entrepreneur and managing partner at Marbas. He buys real estate with potential, arranges the financing and stays involved in operations and management. Includes a timeline of work, education and what happens alongside.",
+      "ogTitle": "Martin van Kaam | Entrepreneur and real estate investor",
+      "ogDescription": "Managing partner at Marbas. Real estate with potential, from acquisition to management, and a timeline of my work and life.",
+      "ogImageAlt": "Martin van Kaam in a dark blue shirt",
+      "jobTitle": "Managing partner"
+    },
+    "skip": "Skip to content",
+    "nav": {
+      "label": "Main menu",
+      "work": "What I do",
+      "timeline": "Timeline",
+      "acquisition": "Acquisitions",
+      "contact": "Contact"
+    },
+    "language": { "label": "Language", "switchTo": "Overschakelen naar Nederlands" },
+    "categories": {
+      "career": "Career",
+      "education": "Education",
+      "travel": "Travel",
+      "sport": "Sports",
+      "motors": "Cars and bikes",
+      "life": "Life milestones"
+    },
+    "timeline": {
+      "all": "All",
+      "filterLabel": "Filter the timeline by topic",
+      "count": "{shown} of {total} moments",
+      "more": "More about this moment",
+      "planned": "Planned",
+      "photoCount": "photos"
+    },
+    "mail": {
+      "openMail": "Open in Mail",
+      "openGmail": "Open in Gmail",
+      "openOutlook": "Open in Outlook",
+      "copy": "Copy address",
+      "copied": "Copied",
+      "copyPrompt": "Copy this address:"
+    },
+    "footer": {
+      "rights": "© 2026 Martin van Kaam",
+      "role": "Managing partner at"
+    }
+  }
+}

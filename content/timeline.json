@@ -1,0 +1,307 @@
+[
+  {
+    "id": "baken-park-lyceum",
+    "date": "2010", "dateEnd": "2011", "precision": "range",
+    "categories": ["education"],
+    "nl": {
+      "title": "Baken Park Lyceum",
+      "summary": "Middelbare school in Almere. In mijn archief zitten foto's van het kerstgala in 2010 en een gameproject voor informatica uit maart 2011."
+    },
+    "en": {
+      "title": "Baken Park Lyceum",
+      "summary": "Secondary school in Almere. My archive holds photos of the 2010 Christmas gala and a game project for computer science from March 2011."
+    }
+  },
+  {
+    "id": "haagse-hogeschool",
+    "date": "2011", "dateEnd": "2018", "precision": "range",
+    "categories": ["education"],
+    "nl": {
+      "title": "Haagse Hogeschool, werken en leren",
+      "summary": "Hbo in de duale variant: werken en leren naast elkaar. Mijn studiedocumenten lopen van 2011 tot 2018.",
+      "more": "In het archief zitten onder meer leercontracten en werkverslagen uit 2015 tot 2017 en een voortgangsdocument van juni 2018."
+    },
+    "en": {
+      "title": "The Hague University, work and study",
+      "summary": "Higher professional education (hbo) in the dual format, combining work and study. My study documents run from 2011 to 2018.",
+      "more": "The archive includes learning contracts and work reports from 2015 to 2017 and a progress document from June 2018."
+    }
+  },
+  {
+    "id": "mb-solar",
+    "date": "2013", "precision": "year",
+    "categories": ["career"],
+    "nl": {
+      "title": "MB Solar",
+      "summary": "Mijn eerste onderneming: verkoop en installatie van zonnepanelen.",
+      "more": "Uit MB Solar ontstond in 2020 Bemtech."
+    },
+    "en": {
+      "title": "MB Solar",
+      "summary": "My first company: selling and installing solar panels.",
+      "more": "In 2020 MB Solar was followed by Bemtech."
+    }
+  },
+  {
+    "id": "marbas-embeka",
+    "date": "2019", "precision": "year",
+    "categories": ["career"],
+    "nl": {
+      "title": "Marbas en Embeka",
+      "summary": "Ik kies voor volledig ondernemerschap. Marbas wordt opgericht, en Embeka gaat vastgoedbeheer en onderhoud doen voor woningcorporaties."
+    },
+    "en": {
+      "title": "Marbas and Embeka",
+      "summary": "I commit to full-time entrepreneurship. Marbas is founded, and Embeka starts providing property management and maintenance for housing associations."
+    }
+  },
+  {
+    "id": "bemtech-bolderweg",
+    "date": "2020", "precision": "year",
+    "categories": ["career"],
+    "nl": {
+      "title": "Bemtech en een eigen pand",
+      "summary": "Bemtech volgt MB Solar op. Voor de huisvesting koop ik het bedrijfspand aan de Bolderweg."
+    },
+    "en": {
+      "title": "Bemtech and a building of our own",
+      "summary": "Bemtech takes over from MB Solar. For its premises I buy the commercial building on the Bolderweg."
+    }
+  },
+  {
+    "id": "argonweg",
+    "date": "2021", "precision": "year",
+    "categories": ["career"],
+    "nl": {
+      "title": "Argonweg",
+      "summary": "Marbas koopt het pand aan de Argonweg, waar Embeka eerder huurde."
+    },
+    "en": {
+      "title": "Argonweg",
+      "summary": "Marbas buys the building on the Argonweg, where Embeka used to rent."
+    }
+  },
+  {
+    "id": "graz-kotor",
+    "date": "2022-09", "precision": "month",
+    "categories": ["travel", "motors"],
+    "image": "trip-vallei",
+    "gallery": ["trip-zonsondergang", "trip-meer", "trip-motor"],
+    "nl": {
+      "title": "Met de motor van Graz naar Kotor",
+      "summary": "Samen met twee reisgenoten op de motor door de Balkan, van Graz naar Kotor.",
+      "more": "Een paar foto's van onderweg: kustroutes, bergvalleien en een bospad.",
+      "imageAlt": "Uitzicht over een groene bergvallei onder een wolkenlucht",
+      "gallery": [
+        "Zonsondergang aan de kust, gezien vanaf de motor",
+        "Een meer in een berglandschap",
+        "Het dashboard van een motor op een bospad"
+      ]
+    },
+    "en": {
+      "title": "By motorbike from Graz to Kotor",
+      "summary": "A motorbike ride through the Balkans with two travel companions, from Graz to Kotor.",
+      "more": "A few photos from along the way: coastal roads, mountain valleys and a forest track.",
+      "imageAlt": "View over a green mountain valley under a cloudy sky",
+      "gallery": [
+        "Sunset on the coast, seen from the motorbike",
+        "A lake in a mountain landscape",
+        "A motorbike dashboard on a forest track"
+      ]
+    }
+  },
+  {
+    "id": "c-rijbewijs",
+    "date": "2023-08", "precision": "month",
+    "categories": ["education"],
+    "nl": {
+      "title": "C-rijbewijs",
+      "summary": "Vanaf augustus 2023: inschrijving, medische keuring en rijlessen voor het C-rijbewijs, het rijbewijs voor vrachtwagens."
+    },
+    "en": {
+      "title": "Category C driving licence",
+      "summary": "From August 2023: registration, medical check and driving lessons for the category C licence, the licence for lorries."
+    }
+  },
+  {
+    "id": "volledig-vastgoed",
+    "date": "2024", "precision": "year",
+    "categories": ["career"],
+    "nl": {
+      "title": "Volledig in vastgoed",
+      "summary": "De portefeuille wordt getaxeerd en geherfinancierd. Vanaf dan richt ik me volledig op vastgoed."
+    },
+    "en": {
+      "title": "Fully focused on real estate",
+      "summary": "The portfolio is valued and refinanced. From then on I focus entirely on real estate."
+    }
+  },
+  {
+    "id": "city-skydive",
+    "date": "2024-04-20", "precision": "day",
+    "categories": ["sport"],
+    "nl": {
+      "title": "City Skydive",
+      "summary": "Vier vluchten op één avond bij City Skydive."
+    },
+    "en": {
+      "title": "City Skydive",
+      "summary": "Four flights in one evening at City Skydive."
+    }
+  },
+  {
+    "id": "japfest-assen",
+    "date": "2024", "precision": "year",
+    "categories": ["motors"],
+    "nl": {
+      "title": "JapFest, TT Circuit Assen",
+      "summary": "Kaartjes voor JapFest, het treffen voor Japanse auto's en motoren op het TT Circuit Assen."
+    },
+    "en": {
+      "title": "JapFest, TT Circuit Assen",
+      "summary": "Tickets for JapFest, the meeting for Japanese cars and bikes at the TT Circuit Assen."
+    }
+  },
+  {
+    "id": "kirgizie",
+    "date": "2024", "precision": "year",
+    "categories": ["travel"],
+    "nl": {
+      "title": "Kirgizië",
+      "summary": "Reis naar Kirgizië."
+    },
+    "en": {
+      "title": "Kyrgyzstan",
+      "summary": "A trip to Kyrgyzstan."
+    }
+  },
+  {
+    "id": "de-bunker",
+    "date": "2025", "precision": "year",
+    "categories": ["career"],
+    "image": "de-bunker",
+    "nl": {
+      "title": "De Bunker, Haarlem",
+      "summary": "Aankoop van het multi-tenant gebouw aan de Tappersweg. Eerst kwam een korte durffinanciering, daarna de taxatie en de herfinanciering.",
+      "imageAlt": "Donkergrijs gebouw De Bunker in Haarlem"
+    },
+    "en": {
+      "title": "De Bunker, Haarlem",
+      "summary": "Purchase of the multi-tenant building on the Tappersweg. A short-term venture financing came first, followed by the valuation and refinancing.",
+      "imageAlt": "Dark grey building De Bunker in Haarlem"
+    }
+  },
+  {
+    "id": "porsche-cayman",
+    "date": "2025-02", "precision": "month",
+    "categories": ["motors"],
+    "image": "cayman",
+    "nl": {
+      "title": "Porsche Cayman",
+      "summary": "Mijn zwarte Porsche Cayman, hier bij zonsondergang op een dijk.",
+      "imageAlt": "Zwarte Porsche Cayman op een dijk bij zonsondergang"
+    },
+    "en": {
+      "title": "Porsche Cayman",
+      "summary": "My black Porsche Cayman, here at sunset on a dyke.",
+      "imageAlt": "Black Porsche Cayman on a dyke at sunset"
+    }
+  },
+  {
+    "id": "marokko",
+    "date": "2026-01", "precision": "month",
+    "categories": ["travel"],
+    "nl": {
+      "title": "Marokko",
+      "summary": "Reis naar Marokko in januari 2026, met een huurauto."
+    },
+    "en": {
+      "title": "Morocco",
+      "summary": "A trip to Morocco in January 2026, with a rental car."
+    }
+  },
+  {
+    "id": "rotterdam-marathon",
+    "date": "2026-04-12", "precision": "day",
+    "categories": ["sport"],
+    "nl": {
+      "title": "NN Marathon Rotterdam",
+      "summary": "Ingeschreven voor de marathon van Rotterdam op 12 april 2026."
+    },
+    "en": {
+      "title": "NN Marathon Rotterdam",
+      "summary": "Registered for the Rotterdam marathon on 12 April 2026."
+    }
+  },
+  {
+    "id": "londen",
+    "date": "2026-05-08", "precision": "day",
+    "categories": ["travel"],
+    "nl": {
+      "title": "Londen",
+      "summary": "Reis naar Londen op 8 mei 2026."
+    },
+    "en": {
+      "title": "London",
+      "summary": "A trip to London on 8 May 2026."
+    }
+  },
+  {
+    "id": "klein-vaarbewijs",
+    "date": "2026-06", "precision": "month",
+    "categories": ["education"],
+    "nl": {
+      "title": "Klein Vaarbewijs",
+      "summary": "In juni 2026 meldde ik me aan voor de examens Klein Vaarbewijs 1 en 2."
+    },
+    "en": {
+      "title": "Small boat licence",
+      "summary": "In June 2026 I signed up for the Klein Vaarbewijs 1 and 2 exams, the Dutch small boat licence."
+    }
+  },
+  {
+    "id": "silverpoint",
+    "date": "2026", "precision": "year",
+    "categories": ["career"],
+    "image": "silverpoint",
+    "nl": {
+      "title": "Silverpoint, Almere",
+      "summary": "Aankoop van Silverpoint met durfkapitaal. Het pand wordt getransformeerd en krijgt stabiele huurders.",
+      "imageAlt": "Wit kantoorgebouw Silverpoint in Almere"
+    },
+    "en": {
+      "title": "Silverpoint, Almere",
+      "summary": "Purchase of Silverpoint with venture capital. The building is being transformed and fitted with stable tenants.",
+      "imageAlt": "White office building Silverpoint in Almere"
+    }
+  },
+  {
+    "id": "running-blind",
+    "date": "2026-09", "precision": "month",
+    "categories": ["sport"],
+    "nl": {
+      "title": "Buddyloper bij Running Blind",
+      "summary": "In september 2026 meldde ik me aan als buddyloper bij Running Blind.",
+      "more": "Running Blind brengt blinde en slechtziende hardlopers samen met ziende buddy's."
+    },
+    "en": {
+      "title": "Guide runner with Running Blind",
+      "summary": "In September 2026 I signed up as a guide runner with Running Blind.",
+      "more": "Running Blind brings blind and visually impaired runners together with sighted guide runners."
+    }
+  },
+  {
+    "id": "challenge-almere-amsterdam",
+    "date": "2027-09-11", "precision": "day",
+    "categories": ["sport"],
+    "status": "planned",
+    "nl": {
+      "title": "Triatlon Challenge Almere-Amsterdam",
+      "summary": "Ingeschreven voor de triatlon van Challenge Almere-Amsterdam op 11 september 2027."
+    },
+    "en": {
+      "title": "Challenge Almere-Amsterdam triathlon",
+      "summary": "Registered for the Challenge Almere-Amsterdam triathlon on 11 September 2027."
+    }
+  }
+]
