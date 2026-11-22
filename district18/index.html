@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<title>District 18 voorbeeldsite</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Opzet: stedelijk en direct. Kaart van een wijk als beeld, huisnummerbord "18" als logo.
+   Baksteen, beton en antraciet. Koppen in smalle, stevige letters zoals op straatborden. */
+:root{
+  --bg:#F2F0ED; --surface:#FFFFFF; --fg:#1B1D20; --muted:#5E625F; --line:#D9D5CE;
+  --brick:#A63D2A; --brick-ink:#FFFFFF; --stone:#E6E2DB; --block:#CFC9BF; --water:#C4D3D6;
+  --font-display:'Barlow Condensed','Arial Narrow',system-ui,sans-serif;
+  --font-body:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131415; --surface:#1B1D1F; --fg:#ECEAE6; --muted:#A5A8A3; --line:#2D3033;
+    --brick:#E0735C; --brick-ink:#1A0A06; --stone:#212326; --block:#2F3236; --water:#23373B;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131415; --surface:#1B1D1F; --fg:#ECEAE6; --muted:#A5A8A3; --line:#2D3033;
+  --brick:#E0735C; --brick-ink:#1A0A06; --stone:#212326; --block:#2F3236; --water:#23373B;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--fg); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+h1,h2,h3{font-family:var(--font-display); font-weight:700; line-height:1.02; margin:0; text-wrap:balance; letter-spacing:.005em}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1160px; margin:0 auto}
+.tag{font-family:var(--font-display); font-weight:600; font-size:1.05rem; letter-spacing:.04em; color:var(--brick)}
+:focus-visible{outline:3px solid var(--brick); outline-offset:3px; border-radius:3px}
+
+.demo{background:var(--fg); color:var(--bg); font-size:.82rem; text-align:center; padding:7px 0}
+
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:10; background:var(--bg)}
+header.top{position:sticky; top:env(safe-area-inset-top, 0px); z-index:5; background:var(--bg); border-bottom:2px solid var(--fg)}
+.nav{display:flex; align-items:center; gap:28px; padding-block:12px; flex-wrap:wrap}
+.logo{display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--font-display); font-weight:700; font-size:1.7rem; letter-spacing:.01em; line-height:1}
+.plate{display:inline-grid; place-items:center; min-width:2.1em; height:1.5em; padding-inline:.32em; background:var(--brick); color:var(--brick-ink); border-radius:4px; font-size:.82em; box-shadow:inset 0 0 0 2px var(--brick), inset 0 0 0 3.5px var(--brick-ink)}
+.nav ul{display:flex; gap:24px; list-style:none; margin:0 0 0 auto; padding:0; flex-wrap:wrap}
+.nav ul a{text-decoration:none; font-weight:500; font-size:.98rem}
+.nav ul a:hover{color:var(--brick)}
+.btn{display:inline-block; font:600 1rem var(--font-body); padding:12px 22px; border-radius:3px; text-decoration:none; border:2px solid var(--fg); cursor:pointer}
+.btn-primary{background:var(--brick); border-color:var(--brick); color:var(--brick-ink)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent; color:var(--fg)}
+.btn-ghost:hover{background:var(--fg); color:var(--bg)}
+
+.hero{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:56px; align-items:center; padding-block:56px 64px}
+.hero h1{font-size:clamp(2.8rem,7.4vw,5.6rem); margin:14px 0 20px}
+.hero .lead{font-size:1.15rem; color:var(--muted); max-width:50ch}
+.cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:30px}
+.map{width:100%; height:auto; display:block; border:2px solid var(--fg); border-radius:4px}
+.map .bg{fill:var(--stone)}
+.map .b{fill:var(--block)}
+.map .water{fill:var(--water)}
+.map .hit{fill:var(--brick)}
+.map text{font-family:var(--font-display); font-weight:700; fill:var(--brick-ink)}
+.map .pin{fill:var(--fg)}
+
+section{padding-block:68px; border-top:2px solid var(--fg)}
+.section-head{max-width:60ch; margin-bottom:36px}
+.section-head h2{font-size:clamp(2rem,4.6vw,3.2rem); margin-top:8px}
+.section-head p{margin-top:12px; color:var(--muted)}
+
+.rows{border-top:1px solid var(--line)}
+.row-svc{display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:40px; padding-block:34px; border-bottom:1px solid var(--line)}
+.row-svc h3{font-size:2.3rem}
+.row-svc p{color:var(--muted); margin-top:10px}
+.row-svc ul{list-style:none; margin:0; padding:0; display:grid; gap:0}
+.row-svc li{padding:12px 0; border-bottom:1px solid var(--line); display:flex; gap:14px}
+.row-svc li:last-child{border-bottom:0}
+.row-svc li::before{content:""; flex:none; width:10px; height:10px; margin-top:.5em; background:var(--brick)}
+
+.who{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px}
+.who div{border-top:6px solid var(--brick); padding-top:14px}
+.who h3{font-size:1.6rem; margin-bottom:6px}
+.who p{color:var(--muted); font-size:.98rem}
+
+.steps{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; list-style:none; margin:0; padding:0; counter-reset:s; border:2px solid var(--fg)}
+.steps li{counter-increment:s; padding:22px; border-right:2px solid var(--fg); background:var(--surface)}
+.steps li:last-child{border-right:0}
+.steps li::before{content:counter(s); display:block; font-family:var(--font-display); font-weight:700; font-size:3rem; line-height:1; color:var(--brick); margin-bottom:8px}
+.steps h3{font-size:1.5rem; margin-bottom:6px}
+.steps p{color:var(--muted); font-size:.97rem}
+
+.report{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:56px; align-items:start}
+form{background:var(--surface); border:2px solid var(--fg); border-radius:4px; padding:28px; display:grid; gap:16px}
+label{display:grid; gap:6px; font-size:.9rem; font-weight:600}
+input,select,textarea{font:400 1rem var(--font-body); color:var(--fg); background:var(--bg); border:1.5px solid var(--line); border-radius:3px; padding:11px 12px; width:100%}
+textarea{min-height:110px; resize:vertical}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.note{font-size:.86rem; color:var(--muted)}
+#sent{display:none; background:var(--stone); border-left:5px solid var(--brick); padding:12px 14px; font-weight:600; font-size:.93rem}
+#sent.show{display:block}
+
+.family{display:flex; gap:24px; align-items:center; flex-wrap:wrap; justify-content:space-between}
+.family p{max-width:60ch; color:var(--muted)}
+.family strong{color:var(--fg)}
+
+footer{background:var(--fg); color:var(--bg); padding-block:44px 52px; margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline:max(16px, env(safe-area-inset-left, 0px))}
+footer .wrap{opacity:.95}
+footer .logo{color:var(--bg)}
+footer .plate{box-shadow:inset 0 0 0 2px var(--brick), inset 0 0 0 3.5px var(--brick-ink)}
+.cols{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; font-size:.95rem}
+footer h3{font-size:1.2rem; letter-spacing:.03em; margin-bottom:10px}
+footer ul{list-style:none; margin:0; padding:0; display:grid; gap:6px}
+footer .legal{margin-top:32px; padding-top:18px; border-top:1px solid color-mix(in srgb, var(--bg) 30%, transparent); font-size:.84rem; opacity:.8}
+
+@media (max-width:900px){
+  .hero,.report{grid-template-columns:minmax(0,1fr); gap:32px}
+  .hero{padding-block:36px 48px}
+  .row-svc{grid-template-columns:minmax(0,1fr); gap:16px}
+  .who{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps li:nth-child(2){border-right:0}
+  .steps li:nth-child(-n+2){border-bottom:2px solid var(--fg)}
+  .cols{grid-template-columns:minmax(0,1fr)}
+  .nav ul{margin-left:0; width:100%; order:3; gap:18px}
+  section{padding-block:48px}
+}
+@media (max-width:520px){
+  .who{grid-template-columns:minmax(0,1fr)}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .steps li{border-right:0; border-bottom:2px solid var(--fg)}
+  .steps li:last-child{border-bottom:0}
+  .row{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="demo">Voorbeeldsite. Teksten, namen en gegevens zijn concept en de naam is nog niet definitief.</div>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="District 18, naar boven">District <span class="plate">18</span></a>
+    <ul>
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#voorwie">Voor wie</a></li>
+      <li><a href="#werkwijze">Werkwijze</a></li>
+      <li><a href="#melding">Melding doen</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#melding">Melding doen</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="tag">Huurbeheer en VvE-beheer</p>
+      <h1>Beheer dat de buurt kent</h1>
+      <p class="lead">District 18 beheert woningen, bedrijfsruimten en appartementencomplexen voor corporaties, eigenaren en VvE's. Eén vast aanspreekpunt voor wie er woont of werkt, en snel geregeld wat stuk is.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#diensten">Bekijk onze diensten</a>
+        <a class="btn btn-ghost" href="#contact">Neem contact op</a>
+      </div>
+    </div>
+    <svg class="map" viewBox="0 0 400 440" role="img" aria-label="Plattegrond van een wijk met één gemarkeerd blok met het nummer 18">
+      <rect class="bg" width="400" height="440"/>
+      <path class="water" d="M-10 330 C80 300 150 380 230 350 C300 325 350 350 410 330 L410 372 C350 392 300 367 232 392 C150 420 80 342 -10 372 Z"/>
+      <g class="b">
+        <rect x="20"  y="20"  width="110" height="80" rx="3"/>
+        <rect x="150" y="20"  width="90"  height="80" rx="3"/>
+        <rect x="260" y="20"  width="120" height="80" rx="3"/>
+        <rect x="20"  y="120" width="70"  height="90" rx="3"/>
+        <rect x="260" y="120" width="120" height="90" rx="3"/>
+        <rect x="20"  y="230" width="110" height="60" rx="3"/>
+        <rect x="150" y="230" width="90"  height="60" rx="3"/>
+        <rect x="260" y="230" width="120" height="60" rx="3"/>
+        <rect x="20"  y="400" width="150" height="24" rx="3"/>
+        <rect x="190" y="410" width="190" height="14" rx="3"/>
+      </g>
+      <rect class="hit" x="110" y="120" width="130" height="90" rx="3"/>
+      <text x="175" y="188" text-anchor="middle" font-size="64">18</text>
+      <circle class="pin" cx="270" cy="270" r="0"/>
+    </svg>
+  </div>
+
+  <section id="diensten">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="tag">Diensten</p>
+        <h2>Twee vormen van beheer, één manier van werken</h2>
+        <p>Of het nu gaat om verhuurde panden of een vereniging van eigenaren: administratie, onderhoud en contact zijn bij ons op orde.</p>
+      </div>
+      <div class="rows">
+        <article class="row-svc">
+          <div>
+            <h3>Huurbeheer</h3>
+            <p>Beheer van woningen en bedrijfsruimten, gericht op waardebehoud en tevreden huurders.</p>
+          </div>
+          <ul>
+            <li>Verhuur, huurcontracten en oplevering</li>
+            <li>Huurincasso, indexering en overzichten voor de eigenaar</li>
+            <li>Technisch beheer en afhandeling van meldingen</li>
+            <li>Eén aanspreekpunt voor huurders</li>
+          </ul>
+        </article>
+        <article class="row-svc">
+          <div>
+            <h3>VvE-beheer</h3>
+            <p>Administratief, financieel en technisch beheer voor verenigingen van eigenaren van elke omvang.</p>
+          </div>
+          <ul>
+            <li>Begroting, jaarrekening en servicekosten</li>
+            <li>Vergaderingen en besluiten van de VvE</li>
+            <li>Meerjarenonderhoudsplan en uitvoering van onderhoud</li>
+            <li>Aanspreekpunt voor bewoners en bestuur</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="voorwie">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="tag">Voor wie</p>
+        <h2>Voor wie wij beheren</h2>
+      </div>
+      <div class="who">
+        <div><h3>Woningcorporaties</h3><p>Aanvullend beheer en onderhoud, met heldere afspraken over service aan huurders.</p></div>
+        <div><h3>Particuliere eigenaren</h3><p>Ontzorgd verhuren, met overzicht over rendement en staat van het pand.</p></div>
+        <div><h3>VvE's</h3><p>Een betrouwbare beheerder voor bestuur en bewoners, van boekhouding tot onderhoud.</p></div>
+        <div><h3>Zakelijk vastgoed</h3><p>Beheer van kantoren en bedrijfsruimten, met dezelfde aandacht voor de gebruiker.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="werkwijze">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="tag">Werkwijze</p>
+        <h2>Zo pakken wij een melding op</h2>
+        <p>Een lekkage of een defecte lift is voor een bewoner meteen een groot probleem. Daarom volgt elke melding dezelfde vaste route.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Melding</h3><p>De huurder of bewoner meldt het via het formulier, per telefoon of per mail.</p></li>
+        <li><h3>Beoordeling</h3><p>Wij bepalen de urgentie en wie het oplost, en bevestigen dat de melding is ontvangen.</p></li>
+        <li><h3>Uitvoering</h3><p>Een vakman of leverancier pakt het op. Wij houden de planning in de gaten.</p></li>
+        <li><h3>Terugkoppeling</h3><p>De melder hoort wat er gedaan is en kan aangeven of het is opgelost.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="melding">
+    <div class="wrap report">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="tag">Voor huurders en bewoners</p>
+        <h2>Iets melden</h2>
+        <p>Vul het formulier in en wij nemen contact met u op. Bij spoed belt u direct naar ons kantoor. In deze voorbeeldsite wordt er niets verstuurd.</p>
+      </div>
+      <form id="melding-form" novalidate>
+        <div class="row">
+          <label for="f-naam">Naam<input id="f-naam" name="naam" autocomplete="name" placeholder="Voor- en achternaam"></label>
+          <label for="f-adres">Adres<input id="f-adres" name="adres" autocomplete="street-address" placeholder="Straat en huisnummer"></label>
+        </div>
+        <label for="f-soort">Waar gaat het over?
+          <select id="f-soort" name="soort">
+            <option>Lekkage of vocht</option>
+            <option>Verwarming of warm water</option>
+            <option>Lift of algemene ruimte</option>
+            <option>Overlast</option>
+            <option>Iets anders</option>
+          </select>
+        </label>
+        <label for="f-tekst">Omschrijving<textarea id="f-tekst" name="tekst" placeholder="Wat is er aan de hand en sinds wanneer?"></textarea></label>
+        <button class="btn btn-primary" type="submit">Melding versturen</button>
+        <p id="sent" role="status">Voorbeeld: de melding is niet verstuurd.</p>
+        <p class="note">Bij brand, gaslucht of gevaar belt u 112.</p>
+      </form>
+    </div>
+  </section>
+
+  <section style="padding-block:40px">
+    <div class="wrap family">
+      <p><strong>District 18 is onderdeel van Marbas Service</strong>, binnen Marbas Groep. Met de kracht van een groep, en de aandacht van een kleine beheerder.</p>
+      <a class="btn btn-ghost" href="#contact">Meer over de groep</a>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="logo" href="#top" style="margin-bottom:12px">District <span class="plate">18</span></a>
+        <p>Huurbeheer en VvE-beheer. Onderdeel van Marbas Groep.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li>[Adres kantoor]</li>
+          <li>[Telefoonnummer]</li>
+          <li>[E-mailadres]</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Bereikbaarheid</h3>
+        <ul>
+          <li>Kantoor: [openingstijden]</li>
+          <li>Spoed buiten kantoortijd: [nummer]</li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">KvK [nummer] · btw [nummer] · Privacyverklaring · Algemene voorwaarden</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('melding-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('sent').classList.add('show');
+  });
+</script>
+</body>
+</html>
