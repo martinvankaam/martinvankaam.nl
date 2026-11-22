@@ -106,12 +106,19 @@ textarea{min-height:110px; resize:vertical}
 #sent{display:none; background:var(--soft); border-radius:8px; padding:12px 14px; color:var(--ok); font-weight:600; font-size:.92rem}
 #sent.show{display:block}
 
+.portal{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px}
+.pcard{display:flex; flex-direction:column; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:28px; text-decoration:none}
+.pcard:hover{border-color:var(--brand)}
+.pcard h3{font-size:1.3rem; font-weight:800}
+.pcard p{color:var(--muted); flex:1}
+.pcard .go{margin-top:10px; font-weight:600; color:var(--brand)}
+.pcard .go::after{content:" \2192"}
 .family{display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between}
 .family p{max-width:60ch; color:var(--muted)}
 .family strong{color:var(--fg)}
 
 footer{border-top:1px solid var(--line); padding-block:40px 48px; color:var(--muted); font-size:.9rem}
-.cols{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px}
+.cols{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px}
 footer h3{font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; color:var(--fg)}
 footer ul{list-style:none; margin:0; padding:0; display:grid; gap:6px}
 footer .legal{margin-top:32px; padding-top:20px; border-top:1px solid var(--line); font-size:.82rem}
@@ -119,7 +126,7 @@ footer .legal{margin-top:32px; padding-top:20px; border-top:1px solid var(--line
 @media (max-width:860px){
   .hero,.report{grid-template-columns:minmax(0,1fr); gap:32px}
   .hero{padding-block:40px 48px}
-  .services{grid-template-columns:minmax(0,1fr)}
+  .services,.portal{grid-template-columns:minmax(0,1fr)}
   .who{grid-template-columns:repeat(2,minmax(0,1fr))}
   .who div:nth-child(2){border-right:0}
   .who div:nth-child(-n+2){border-bottom:1px solid var(--line)}
@@ -162,7 +169,7 @@ footer .legal{margin-top:32px; padding-top:20px; border-top:1px solid var(--line
       <li><a href="#melding">Melding doen</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a class="btn btn-primary" href="#melding">Melding doen</a>
+    <a class="btn btn-primary" href="https://portal.marbas.nl/incident" target="_blank" rel="noopener">Melding doen</a>
   </div>
 </header>
 
@@ -261,31 +268,29 @@ footer .legal{margin-top:32px; padding-top:20px; border-top:1px solid var(--line
   </section>
 
   <section id="melding">
-    <div class="wrap report">
-      <div class="section-head" style="margin-bottom:0">
+    <div class="wrap">
+      <div class="section-head">
         <p class="eyebrow">Voor huurders en bewoners</p>
-        <h2>Iets melden</h2>
-        <p>Vul het formulier in en wij nemen contact met u op. Bij spoed belt u direct naar ons kantoor. In deze voorbeeldsite wordt er niets verstuurd.</p>
+        <h2>Alles voor huurders en bewoners in het portaal</h2>
+        <p>Een storing melden, een antwoord zoeken of uw gegevens bekijken. Het portaal opent in een nieuw tabblad. Bij spoed belt u direct naar ons kantoor, bij brand, gaslucht of gevaar belt u 112.</p>
       </div>
-      <form id="melding-form" novalidate>
-        <div class="row">
-          <label for="f-naam">Naam<input id="f-naam" name="naam" autocomplete="name" placeholder="Voor- en achternaam"></label>
-          <label for="f-adres">Adres<input id="f-adres" name="adres" autocomplete="street-address" placeholder="Straat en huisnummer"></label>
-        </div>
-        <label for="f-soort">Waar gaat het over?
-          <select id="f-soort" name="soort">
-            <option>Lekkage of vocht</option>
-            <option>Verwarming of warm water</option>
-            <option>Lift of algemene ruimte</option>
-            <option>Overlast</option>
-            <option>Iets anders</option>
-          </select>
-        </label>
-        <label for="f-tekst">Omschrijving<textarea id="f-tekst" name="tekst" placeholder="Wat is er aan de hand en sinds wanneer?"></textarea></label>
-        <button class="btn btn-primary" type="submit">Melding versturen</button>
-        <p id="sent" role="status">Voorbeeld: de melding is niet verstuurd.</p>
-        <p class="note">Bij brand, gaslucht of gevaar belt u 112.</p>
-      </form>
+      <div class="portal">
+        <a class="pcard" href="https://portal.marbas.nl/incident" target="_blank" rel="noopener">
+          <h3>Melding doen</h3>
+          <p>Reparatieverzoeken, storingen en overige vragen.</p>
+          <span class="go">Naar het meldformulier</span>
+        </a>
+        <a class="pcard" href="https://portal.marbas.nl/help" target="_blank" rel="noopener">
+          <h3>Vraag en antwoord</h3>
+          <p>Algemene informatie en meestgestelde vragen.</p>
+          <span class="go">Bekijk de antwoorden</span>
+        </a>
+        <a class="pcard" href="https://portal.marbas.nl/myportal" target="_blank" rel="noopener">
+          <h3>Mijn portaal</h3>
+          <p>Inloggen om uw meldingen en documenten te bekijken.</p>
+          <span class="go">Inloggen</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -313,6 +318,14 @@ footer .legal{margin-top:32px; padding-top:20px; border-top:1px solid var(--line
         </ul>
       </div>
       <div>
+        <h3>Huurders en bewoners</h3>
+        <ul>
+          <li><a href="https://portal.marbas.nl/incident" target="_blank" rel="noopener">Melding doen</a></li>
+          <li><a href="https://portal.marbas.nl/help" target="_blank" rel="noopener">Vraag en antwoord</a></li>
+          <li><a href="https://portal.marbas.nl/myportal" target="_blank" rel="noopener">Mijn portaal</a></li>
+        </ul>
+      </div>
+      <div>
         <h3>Bereikbaarheid</h3>
         <ul>
           <li>Kantoor: [openingstijden]</li>
@@ -324,12 +337,6 @@ footer .legal{margin-top:32px; padding-top:20px; border-top:1px solid var(--line
   </div>
 </footer>
 
-<script>
-  var f = document.getElementById('melding-form');
-  f.addEventListener('submit', function (e) {
-    e.preventDefault();
-    document.getElementById('sent').classList.add('show');
-  });
-</script>
+
 </body>
 </html>
