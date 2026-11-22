@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<title>Residio voorbeeldsite</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap">
+<style>
+/* Opzet: rustige zakelijke beheersite. Gevel met één verlicht raam als beeldmerk: de mens in het gebouw. */
+:root{
+  --bg:#F5F8F8; --surface:#FFFFFF; --fg:#10252C; --muted:#53686F; --line:#D6E0E2;
+  --brand:#134E5E; --brand-ink:#FFFFFF; --soft:#E4EEEF; --accent:#E39A1F; --accent-ink:#2A1B00;
+  --ok:#1F7A5A;
+  --font-display:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B181D; --surface:#12252B; --fg:#E7EFF1; --muted:#9BB0B6; --line:#24383F;
+    --brand:#7CC3D3; --brand-ink:#08161A; --soft:#163039; --accent:#F0B24A; --accent-ink:#2A1B00; --ok:#5CC49C;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B181D; --surface:#12252B; --fg:#E7EFF1; --muted:#9BB0B6; --line:#24383F;
+  --brand:#7CC3D3; --brand-ink:#08161A; --soft:#163039; --accent:#F0B24A; --accent-ink:#2A1B00; --ok:#5CC49C;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--fg); font-family:var(--font-body); font-size:16px; line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+h1,h2,h3{font-family:var(--font-display); line-height:1.12; margin:0; text-wrap:balance; letter-spacing:-0.01em}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1120px; margin:0 auto}
+.eyebrow{font-size:.78rem; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--muted)}
+:focus-visible{outline:3px solid var(--accent); outline-offset:3px; border-radius:4px}
+
+.demo{background:var(--soft); color:var(--muted); font-size:.82rem; text-align:center; padding:8px 0}
+
+header.top{position:sticky; top:env(safe-area-inset-top, 0px); z-index:5; background:var(--bg); border-bottom:1px solid var(--line)}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:10; background:var(--bg)}
+.nav{display:flex; align-items:center; gap:24px; padding-block:14px; flex-wrap:wrap}
+.logo{display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--font-display); font-weight:800; font-size:1.35rem; letter-spacing:-0.02em; color:var(--brand)}
+.logo svg{width:30px; height:30px; flex:none}
+.nav ul{display:flex; gap:22px; list-style:none; margin:0 0 0 auto; padding:0; flex-wrap:wrap}
+.nav ul a{text-decoration:none; font-size:.95rem; font-weight:500; color:var(--muted)}
+.nav ul a:hover{color:var(--fg)}
+.btn{display:inline-block; font:600 .95rem var(--font-body); padding:11px 20px; border-radius:8px; text-decoration:none; border:1px solid transparent; cursor:pointer}
+.btn-primary{background:var(--brand); color:var(--brand-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{border-color:var(--line); color:var(--fg); background:transparent}
+.btn-ghost:hover{border-color:var(--brand)}
+
+.hero{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:48px; align-items:center; padding-block:64px 72px}
+.hero h1{font-size:clamp(2.1rem,5vw,3.5rem); font-weight:800; margin:14px 0 18px}
+.hero .lead{font-size:1.12rem; color:var(--muted); max-width:52ch}
+.cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:28px}
+.facade{width:100%; height:auto; display:block; border-radius:14px; background:var(--soft)}
+.facade .w{fill:var(--surface); stroke:var(--line); stroke-width:1.5}
+.facade .lit{fill:var(--accent)}
+.facade .wall{fill:var(--brand)}
+.facade .door{fill:var(--bg)}
+
+section{padding-block:64px}
+.band{background:var(--surface); border-block:1px solid var(--line)}
+.section-head{max-width:62ch; margin-bottom:36px}
+.section-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem); font-weight:800; margin-top:10px}
+.section-head p{margin-top:12px; color:var(--muted)}
+
+.services{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px}
+.svc{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:32px}
+.band .svc{background:var(--bg)}
+.svc h3{font-size:1.5rem; font-weight:800; margin-bottom:10px}
+.svc > p{color:var(--muted)}
+.svc ul{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:10px}
+.svc li{display:flex; gap:12px; align-items:flex-start}
+.svc li::before{content:""; flex:none; width:8px; height:8px; margin-top:.62em; border-radius:2px; background:var(--accent)}
+
+.who{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--surface)}
+.who div{padding:26px; border-right:1px solid var(--line)}
+.who div:last-child{border-right:0}
+.who h3{font-size:1.05rem; font-weight:700; margin-bottom:8px}
+.who p{color:var(--muted); font-size:.95rem}
+
+.steps{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; list-style:none; margin:0; padding:0; counter-reset:s}
+.steps li{counter-increment:s; border-top:3px solid var(--brand); padding-top:16px}
+.steps li::before{content:"Stap " counter(s); display:block; font-size:.78rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:6px}
+.steps h3{font-size:1.1rem; font-weight:700; margin-bottom:6px}
+.steps p{color:var(--muted); font-size:.95rem}
+
+.report{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:48px; align-items:start}
+form{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:28px; display:grid; gap:16px}
+.band form{background:var(--bg)}
+label{display:grid; gap:6px; font-size:.88rem; font-weight:600}
+input,select,textarea{font:400 1rem var(--font-body); color:var(--fg); background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:11px 12px; width:100%}
+.band input,.band select,.band textarea{background:var(--surface)}
+textarea{min-height:110px; resize:vertical}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.note{font-size:.85rem; color:var(--muted)}
+#sent{display:none; background:var(--soft); border-radius:8px; padding:12px 14px; color:var(--ok); font-weight:600; font-size:.92rem}
+#sent.show{display:block}
+
+.family{display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between}
+.family p{max-width:60ch; color:var(--muted)}
+.family strong{color:var(--fg)}
+
+footer{border-top:1px solid var(--line); padding-block:40px 48px; color:var(--muted); font-size:.9rem}
+.cols{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px}
+footer h3{font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; color:var(--fg)}
+footer ul{list-style:none; margin:0; padding:0; display:grid; gap:6px}
+footer .legal{margin-top:32px; padding-top:20px; border-top:1px solid var(--line); font-size:.82rem}
+
+@media (max-width:860px){
+  .hero,.report{grid-template-columns:minmax(0,1fr); gap:32px}
+  .hero{padding-block:40px 48px}
+  .services{grid-template-columns:minmax(0,1fr)}
+  .who{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .who div:nth-child(2){border-right:0}
+  .who div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cols{grid-template-columns:minmax(0,1fr)}
+  .nav ul{margin-left:0; width:100%; order:3; gap:16px}
+  section{padding-block:48px}
+}
+@media (max-width:520px){
+  .who{grid-template-columns:minmax(0,1fr)}
+  .who div{border-right:0; border-bottom:1px solid var(--line)}
+  .who div:last-child{border-bottom:0}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .svc{padding:24px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+<div class="demo">Voorbeeldsite. Teksten, namen en gegevens zijn concept en nog niet definitief.</div>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Residio, naar boven">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="2" y="2" width="28" height="28" rx="6" fill="currentColor"/>
+        <rect x="7" y="7" width="7" height="7" rx="1.5" fill="var(--bg)"/>
+        <rect x="18" y="7" width="7" height="7" rx="1.5" fill="var(--bg)"/>
+        <rect x="7" y="18" width="7" height="7" rx="1.5" fill="var(--bg)"/>
+        <rect x="18" y="18" width="7" height="7" rx="1.5" fill="var(--accent)"/>
+      </svg>
+      Residio
+    </a>
+    <ul>
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#voorwie">Voor wie</a></li>
+      <li><a href="#werkwijze">Werkwijze</a></li>
+      <li><a href="#melding">Melding doen</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#melding">Melding doen</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">Huurbeheer en VvE-beheer</p>
+      <h1>Beheer waarbij de mens in het gebouw centraal staat</h1>
+      <p class="lead">Residio beheert woningen, bedrijfsruimten en appartementencomplexen. Voor corporaties, eigenaren en VvE's. Met één vast aanspreekpunt voor wie er woont of werkt.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#diensten">Bekijk onze diensten</a>
+        <a class="btn btn-ghost" href="#contact">Neem contact op</a>
+      </div>
+    </div>
+    <svg class="facade" viewBox="0 0 400 440" role="img" aria-label="Gevel van een appartementengebouw met één verlicht raam">
+      <rect width="400" height="440" fill="var(--soft)"/>
+      <rect class="wall" x="60" y="40" width="280" height="360" rx="6"/>
+      <g>
+        <rect class="w" x="88"  y="68"  width="50" height="58" rx="4"/>
+        <rect class="w" x="175" y="68"  width="50" height="58" rx="4"/>
+        <rect class="w" x="262" y="68"  width="50" height="58" rx="4"/>
+        <rect class="w" x="88"  y="150" width="50" height="58" rx="4"/>
+        <rect class="w" x="175" y="150" width="50" height="58" rx="4"/>
+        <rect class="w" x="262" y="150" width="50" height="58" rx="4"/>
+        <rect class="w" x="88"  y="232" width="50" height="58" rx="4"/>
+        <rect class="lit" x="175" y="232" width="50" height="58" rx="4"/>
+        <rect class="w" x="262" y="232" width="50" height="58" rx="4"/>
+        <rect class="w" x="88"  y="314" width="50" height="58" rx="4"/>
+        <rect class="w" x="262" y="314" width="50" height="58" rx="4"/>
+        <rect class="door" x="175" y="322" width="50" height="78" rx="4"/>
+      </g>
+    </svg>
+  </div>
+
+  <section id="diensten" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Diensten</p>
+        <h2>Twee vormen van beheer, één manier van werken</h2>
+        <p>Of het nu gaat om verhuurde panden of een vereniging van eigenaren: wij houden de administratie, het onderhoud en het contact op orde.</p>
+      </div>
+      <div class="services">
+        <article class="svc">
+          <h3>Huurbeheer</h3>
+          <p>Professioneel beheer van woningen en bedrijfsruimten, gericht op waardebehoud en tevreden huurders.</p>
+          <ul>
+            <li>Verhuur, huurcontracten en oplevering</li>
+            <li>Huurincasso, indexering en overzichten voor de eigenaar</li>
+            <li>Technisch beheer en afhandeling van meldingen</li>
+            <li>Eén aanspreekpunt voor huurders</li>
+          </ul>
+        </article>
+        <article class="svc">
+          <h3>VvE-beheer</h3>
+          <p>Administratief, financieel en technisch beheer voor verenigingen van eigenaren van elke omvang.</p>
+          <ul>
+            <li>Begroting, jaarrekening en servicekosten</li>
+            <li>Vergaderingen en besluiten van de VvE</li>
+            <li>Meerjarenonderhoudsplan en uitvoering van onderhoud</li>
+            <li>Aanspreekpunt voor bewoners en bestuur</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="voorwie">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Voor wie</p>
+        <h2>Voor wie wij beheren</h2>
+      </div>
+      <div class="who">
+        <div><h3>Woningcorporaties</h3><p>Aanvullend beheer en onderhoud, met heldere afspraken over service aan huurders.</p></div>
+        <div><h3>Particuliere eigenaren</h3><p>Ontzorgd verhuren, met overzicht over rendement en staat van het pand.</p></div>
+        <div><h3>VvE's</h3><p>Een betrouwbare beheerder voor bestuur en bewoners, van boekhouding tot onderhoud.</p></div>
+        <div><h3>Zakelijk vastgoed</h3><p>Beheer van kantoren en bedrijfsruimten, met dezelfde aandacht voor de gebruiker.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="werkwijze" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Werkwijze</p>
+        <h2>Zo pakken wij een melding op</h2>
+        <p>Een lekkage of een defecte lift is voor een bewoner meteen een groot probleem. Daarom volgt elke melding dezelfde vaste route.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Melding</h3><p>De huurder of bewoner meldt het via het formulier, per telefoon of per mail.</p></li>
+        <li><h3>Beoordeling</h3><p>Wij bepalen de urgentie en wie het oplost, en bevestigen dat de melding is ontvangen.</p></li>
+        <li><h3>Uitvoering</h3><p>Een vakman of leverancier pakt het op. Wij houden de planning in de gaten.</p></li>
+        <li><h3>Terugkoppeling</h3><p>De melder hoort wat er gedaan is en kan aangeven of het is opgelost.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="melding">
+    <div class="wrap report">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Voor huurders en bewoners</p>
+        <h2>Iets melden</h2>
+        <p>Vul het formulier in en wij nemen contact met u op. Bij spoed belt u direct naar ons kantoor. In deze voorbeeldsite wordt er niets verstuurd.</p>
+      </div>
+      <form id="melding-form" novalidate>
+        <div class="row">
+          <label for="f-naam">Naam<input id="f-naam" name="naam" autocomplete="name" placeholder="Voor- en achternaam"></label>
+          <label for="f-adres">Adres<input id="f-adres" name="adres" autocomplete="street-address" placeholder="Straat en huisnummer"></label>
+        </div>
+        <label for="f-soort">Waar gaat het over?
+          <select id="f-soort" name="soort">
+            <option>Lekkage of vocht</option>
+            <option>Verwarming of warm water</option>
+            <option>Lift of algemene ruimte</option>
+            <option>Overlast</option>
+            <option>Iets anders</option>
+          </select>
+        </label>
+        <label for="f-tekst">Omschrijving<textarea id="f-tekst" name="tekst" placeholder="Wat is er aan de hand en sinds wanneer?"></textarea></label>
+        <button class="btn btn-primary" type="submit">Melding versturen</button>
+        <p id="sent" role="status">Voorbeeld: de melding is niet verstuurd.</p>
+        <p class="note">Bij brand, gaslucht of gevaar belt u 112.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="band" style="padding-block:40px">
+    <div class="wrap family">
+      <p><strong>Residio is onderdeel van Marbas Service</strong>, binnen Marbas Groep. Met de kracht van een groep, en de aandacht van een kleine beheerder.</p>
+      <a class="btn btn-ghost" href="#contact">Meer over de groep</a>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="logo" href="#top" style="margin-bottom:12px">Residio</a>
+        <p>Huurbeheer en VvE-beheer. Onderdeel van Marbas Groep.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li>[Adres kantoor]</li>
+          <li>[Telefoonnummer]</li>
+          <li>[E-mailadres]</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Bereikbaarheid</h3>
+        <ul>
+          <li>Kantoor: [openingstijden]</li>
+          <li>Spoed buiten kantoortijd: [nummer]</li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">KvK [nummer] · btw [nummer] · Privacyverklaring · Algemene voorwaarden</p>
+  </div>
+</footer>
+
+<script>
+  var f = document.getElementById('melding-form');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('sent').classList.add('show');
+  });
+</script>
+</body>
+</html>
