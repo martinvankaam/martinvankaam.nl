@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marbas financieel overzicht</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#fff; --ink:#14181f; --ink2:#5a6372; --ink3:#8a93a3; --line:#e4e7ec;
+  --accent:#1f5eff; --accent-soft:#e8efff; --pos:#127a4b; --neg:#b42318; --grey:#b9c0cc;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0e1116;--card:#171b22;--ink:#eef1f6;--ink2:#a5aebd;--ink3:#7b8494;--line:#262c36;--accent:#6e95ff;--accent-soft:#1c2740;--pos:#4cc38a;--neg:#f2837a;--grey:#4a5566;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0e1116;--card:#171b22;--ink:#eef1f6;--ink2:#a5aebd;--ink3:#7b8494;--line:#262c36;--accent:#6e95ff;--accent-soft:#1c2740;--pos:#4cc38a;--neg:#f2837a;--grey:#4a5566;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 64px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+h1{font-size:22px;margin:0;letter-spacing:-.01em}
+.sub{color:var(--ink3);font-size:13px}
+.periods{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink2);padding:6px 13px;border-radius:999px;cursor:pointer;font:inherit;font-size:13px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.sep{width:1px;height:20px;background:var(--line);margin:0 4px}
+.selbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:26px 0 12px;min-height:38px}
+.selbar h2{margin:0;font-size:19px}
+.back{font:inherit;font-size:14px;font-weight:600;color:var(--bg);background:var(--accent);border:0;border-radius:999px;padding:8px 16px;cursor:pointer}
+.back:hover{filter:brightness(1.1)}
+.back.off{visibility:hidden}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.kpi .l{color:var(--ink2);font-size:13px}
+.kpi .v{font-size:26px;font-weight:650;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .n{color:var(--ink3);font-size:12px;margin-top:2px;height:18px;overflow:hidden;white-space:nowrap}
+.kpi.ghost{visibility:hidden}
+.kpi.main{background:var(--accent-soft);border-color:transparent}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.charts h3{margin:0 0 6px;font-size:13px;color:var(--ink2);font-weight:600}
+.chartbox{position:relative}
+.chartbox{height:230px}
+.chartbox svg{display:block;max-width:100%}
+.chartbox .empty{height:100%;display:flex;align-items:center;justify-content:center}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:6px 9px;border-radius:8px;white-space:nowrap;display:none;z-index:5}
+.legend{display:flex;gap:14px;color:var(--ink2);font-size:12px;margin-top:6px;height:18px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.tabs{display:flex;gap:6px;margin:34px 0 14px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink2);padding:8px 14px;border-radius:999px;cursor:pointer;font:inherit;font-size:14px}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.unit{margin-bottom:12px}
+.unit-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.unit-h h3{margin:0;font-size:17px}
+.unit-h .tot{font-size:14px;font-variant-numeric:tabular-nums;font-weight:600}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-weight:500;color:var(--ink3);font-size:12px;text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 8px;text-align:right;border-bottom:1px solid var(--line);font-size:14px;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+tr:last-child td{border-bottom:0}
+tr.row{cursor:pointer}
+tr.row:hover td,tr.sel td{background:var(--accent-soft)}
+td.name{font-weight:550}
+td .sm{display:block;color:var(--ink3);font-size:12px;font-weight:400}
+.pos{color:var(--pos)}.neg{color:var(--neg)}
+.empty{color:var(--ink3);padding:6px 0;font-size:14px}
+.scroll{overflow-x:auto}
+@media(max-width:760px){.kpis{grid-template-columns:1fr 1fr}.charts{grid-template-columns:1fr}.kpi .v{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap" id="login" style="max-width:380px;padding-top:12vh">
+  <h1 style="margin-bottom:6px">Marbas financieel overzicht</h1>
+  <div class="sub" style="margin-bottom:18px">Alleen voor Marbas Groep</div>
+  <form id="lf" class="card" style="display:flex;flex-direction:column;gap:12px">
+    <input id="pw" type="password" autocomplete="current-password" placeholder="Wachtwoord" aria-label="Wachtwoord" style="font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)">
+    <button class="back" type="submit" id="lb">Openen</button>
+    <div id="le" class="neg" style="font-size:13px;min-height:18px"></div>
+  </form>
+</div>
+<div class="wrap" id="app" hidden>
+  <header>
+    <h1>Marbas financieel overzicht</h1>
+    <div class="sub">Stand 24 november 2026</div>
+  </header>
+
+  <div class="periods" id="periods" role="group" aria-label="Periode"></div>
+
+  <div class="selbar"><h2 id="seltitle"></h2><button class="back off" id="back">← Terug naar totaal</button></div>
+  <div class="kpis" id="kpis"></div>
+  <div class="charts" id="charts">
+    <div class="card" id="c1"><h3>Opbrengsten en kosten</h3><div class="chartbox" id="ch1"></div><div class="legend"><span><i style="background:var(--accent)"></i>Opbrengsten</span><span><i style="background:var(--grey)"></i>Kosten</span></div></div>
+    <div class="card" id="c2"><h3>Resultaat</h3><div class="chartbox" id="ch2"></div><div class="legend"></div></div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-t="bu" aria-selected="true">Per business unit</button>
+    <button class="tab" role="tab" data-t="bv" aria-selected="false">Per BV</button>
+  </div>
+  <div id="view"></div>
+  <div class="tip" id="tip"></div>
+</div>
+
+<script>
+const API='https://marbas-dashboard.ancient-snowflake-c853.workers.dev';
+let DATA,BY={},UNITS,BVORDER;
+async function api(path,opt){const r=await fetch(API+path,opt);let j={};try{j=await r.json()}catch{}return {ok:r.ok,status:r.status,j}}
+async function loadData(){
+  const t=sessionStorage.getItem('mt');if(!t)return false;
+  const r=await api('/data',{headers:{Authorization:'Bearer '+t}});
+  if(!r.ok){sessionStorage.removeItem('mt');return false}
+  boot(r.j);return true;
+}
+document.getElementById('lf').onsubmit=async e=>{
+  e.preventDefault();const b=document.getElementById('lb'),er=document.getElementById('le');b.disabled=true;er.textContent='';
+  try{const r=await api('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('pw').value})});
+    if(!r.ok){er.textContent=(r.j&&r.j.error)||'Inloggen lukt niet.';b.disabled=false;return}
+    sessionStorage.setItem('mt',r.j.token);
+    if(!await loadData()){er.textContent='Cijfers laden lukt niet.'}
+  }catch{er.textContent='Geen verbinding.'}b.disabled=false;document.getElementById('pw').value='';
+};
+const eur = n => (n==null||isNaN(n))?'–':new Intl.NumberFormat('nl-NL',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
+const cls = n => n==null?'':(n<0?'neg':'pos');
+const sumN=a=>{let s=0,any=false;a.forEach(x=>{if(x!=null){s+=x;any=true}});return any?s:null};
+
+const mk=(y0,y1)=>{const m=[];for(let y=y0;y<=y1;y++)for(let i=1;i<=12;i++){if(y===2026&&i>11)break;m.push(y+'-'+String(i).padStart(2,'0'))}return m};
+const PERIODS=[
+ {id:'y2026',lab:'Dit jaar',months:mk(2026,2026),end:2026},
+ {id:'y2025',lab:'2025',months:mk(2025,2025),end:2025},{id:'y2024',lab:'2024',months:mk(2024,2024),end:2024},{id:'y2023',lab:'2023',months:mk(2023,2023),end:2023},
+ {id:'r2',lab:'Laatste 2 jaar',months:mk(2025,2026),end:2026},
+ {id:'r3',lab:'Laatste 3 jaar',months:mk(2024,2026),end:2026},
+ {id:'r5',lab:'Laatste 5 jaar',months:mk(2022,2026),end:2026},
+];
+const state={p:'y2026',sel:'total',tab:'bu'};
+const per=()=>PERIODS.find(x=>x.id===state.p);
+const MN=['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
+const mval=(it,m,f)=>it.months[m]?it.months[m][f]:null;
+const agg=(it,f)=>sumN(per().months.map(m=>mval(it,m,f)));
+const balAt=it=>it.bal?(it.bal[per().end]||null):null;
+
+function renderPeriods(){
+  const el=document.getElementById('periods');
+  el.innerHTML=PERIODS.map((p,i)=>(i===4?'<span class="sep"></span>':'')+`<button class="chip" data-p="${p.id}" aria-pressed="${p.id===state.p}">${p.lab}</button>`).join('');
+  el.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{state.p=b.dataset.p;render()});
+}
+const kpi=(l,v,n,c)=>`<div class="card kpi ${c||''}"><div class="l">${l}</div><div class="v">${v}</div><div class="n">${n||''}</div></div>`;
+
+function renderTop(){
+  const it=BY[state.sel],P=per();
+  document.getElementById('seltitle').textContent=it.label;
+  document.getElementById('back').className='back'+(state.sel==='total'?' off':'');
+  const b=balAt(it),o=agg(it,'o'),k=agg(it,'k'),r=agg(it,'r');
+  const plab=P.id==='y2026'?'2026 tot nu':P.lab;
+  const balLab=P.end===2026?'Nu':'Eind '+P.end;
+  const res=kpi('Resultaat',`<span class="${cls(r)}">${eur(r)}</span>`,plab,'main');
+  document.getElementById('kpis').innerHTML=b?
+    kpi('Banksaldo',eur(b.bank),balLab)+kpi('Nog te ontvangen',eur(b.ont),balLab)+kpi('Nog te betalen',eur(b.bet),balLab)+res
+    :kpi('Opbrengsten',eur(o),plab)+kpi('Kosten',eur(k),plab)+res+kpi('','','','ghost');
+  const ms=P.months;
+  lineChart('ch1',ms,[{name:'Opbrengsten',color:'var(--accent)',v:ms.map(m=>mval(it,m,'o'))},{name:'Kosten',color:'var(--grey)',v:ms.map(m=>mval(it,m,'k'))}]);
+  lineChart('ch2',ms,[{name:'Resultaat',color:'var(--accent)',v:ms.map(m=>mval(it,m,'r'))}],true);
+}
+
+// ---------- lijngrafieken per maand (1 as, eigen schaal) ----------
+const tip=document.getElementById('tip');
+function showTip(e,txt){const wr=tip.parentElement.getBoundingClientRect();tip.style.display='block';tip.textContent=txt;
+  tip.style.left=Math.max(0,Math.min(e.clientX-wr.left+14,wr.width-260))+'px';tip.style.top=(e.clientY-wr.top-40)+'px'}
+const hideTip=()=>{tip.style.display='none'};
+const fmtK=v=>Math.abs(v)>=1e6?(v/1e6).toLocaleString('nl-NL',{maximumFractionDigits:1})+' mln':Math.round(v/1000).toLocaleString('nl-NL')+'k';
+function lineChart(id,ms,series,zero){
+  const box=document.getElementById(id),W=Math.max(280,box.clientWidth||480),H=230,pl=46,pr=12,pt=10,pb=26,n=ms.length;
+  const all=series.flatMap(s=>s.v).filter(v=>v!=null);
+  if(!all.length){box.innerHTML='<div class="empty">Geen cijfers in Moneybird voor deze periode</div>';return}
+  let mn=Math.min(...all,0),mx=Math.max(...all,0);if(mn===mx)mx=mn+1;const pad=(mx-mn)*.08;if(mn<0)mn-=pad;if(mx>0)mx+=pad;
+  const X=i=>pl+i*(W-pl-pr)/Math.max(1,n-1),Y=v=>pt+(1-(v-mn)/(mx-mn))*(H-pt-pb);
+  let g='';
+  for(let t=0;t<4;t++){const v=mn+(mx-mn)*t/3;g+=`<line x1="${pl}" x2="${W-pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${pl-6}" y="${Y(v)+4}" text-anchor="end" font-size="10" fill="var(--ink3)">${fmtK(v)}</text>`}
+  if(mn<0)g+=`<line x1="${pl}" x2="${W-pr}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--ink3)"/>`;
+  ms.forEach((m,i)=>{const mo=+m.slice(5)-1,yr=m.slice(2,4);
+    const show=n<=12?true:(n<=24?mo%3===0:(n<=36?mo%6===0:mo===0));
+    if(show)g+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle" font-size="10" fill="var(--ink3)">${n<=12?MN[mo]:(mo===0?'jan ’'+yr:MN[mo])}</text>`});
+  series.forEach(s=>{let d='',pen=false;s.v.forEach((v,i)=>{if(v==null){pen=false;return}d+=(pen?'L':'M')+X(i)+' '+Y(v)+' ';pen=true});
+    g+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`});
+  g+=`<line id="${id}x" y1="${pt}" y2="${H-pb}" stroke="var(--ink3)" stroke-dasharray="3 3" style="display:none"/>`;
+  series.forEach((s,k)=>g+=`<circle id="${id}c${k}" r="4.5" fill="${s.color}" stroke="var(--card)" stroke-width="2" style="display:none"/>`);
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img">${g}</svg>`;
+  const svg=box.querySelector('svg');
+  svg.onmousemove=e=>{const r=svg.getBoundingClientRect(),x=(e.clientX-r.left)*W/r.width;
+    const i=Math.max(0,Math.min(n-1,Math.round((x-pl)*(n-1)/(W-pl-pr))));
+    const cx=svg.querySelector('#'+id+'x');cx.setAttribute('x1',X(i));cx.setAttribute('x2',X(i));cx.style.display='';
+    series.forEach((s,k)=>{const c=svg.querySelector('#'+id+'c'+k);if(s.v[i]==null){c.style.display='none'}else{c.setAttribute('cx',X(i));c.setAttribute('cy',Y(s.v[i]));c.style.display=''}});
+    const m=ms[i];showTip(e,MN[+m.slice(5)-1]+' '+m.slice(0,4)+': '+series.map(s=>(series.length>1?s.name+' ':'')+eur(s.v[i])).join(' · '))};
+  svg.onmouseleave=()=>{hideTip();svg.querySelectorAll('circle,#'+id+'x').forEach(c=>c.style.display='none')};
+}
+
+// ---------- tabellen ----------
+const tbl=(head,rows)=>`<div class="scroll"><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>`;
+function row(it,full){
+  const o=agg(it,'o'),k=agg(it,'k'),r=agg(it,'r'),b=balAt(it);
+  let c=`<td>${eur(o)}</td><td>${eur(k)}</td><td class="${cls(r)}">${eur(r)}</td>`;
+  if(full)c+=`<td>${b?eur(b.bank):'–'}</td><td>${b?eur(b.ont):'–'}</td><td>${b?eur(b.bet):'–'}</td>`;
+  return `<tr class="row ${state.sel===it.id?'sel':''}" data-id="${it.id}"><td class="name">${it.label}${it.sub?`<span class="sm">${it.sub}</span>`:''}</td>${c}</tr>`;
+}
+function viewBU(){
+  const head=['','Opbrengsten','Kosten','Resultaat'];
+  return UNITS.map(u=>{
+    const its=u.rows.map(id=>BY[id]),r=sumN(its.map(i=>agg(i,'r')));
+    return `<div class="card unit"><div class="unit-h"><h3>${u.n}</h3><span class="tot ${cls(r)}">${eur(r)}</span></div>${tbl(head,its.map(i=>row(i,false)).join(''))}</div>`;
+  }).join('');
+}
+function viewBV(){
+  const head=['','Opbrengsten','Kosten','Resultaat','Banksaldo','Te ontvangen','Te betalen'];
+  return `<div class="card">${tbl(head,BVORDER.map(id=>row(BY[id],true)).join(''))}</div>`;
+}
+function renderView(){
+  const v=document.getElementById('view');
+  v.innerHTML=state.tab==='bv'?viewBV():viewBU();
+  document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===state.tab));
+  v.querySelectorAll('tr.row').forEach(tr=>tr.onclick=()=>{state.sel=tr.dataset.id;render();window.scrollTo({top:0,behavior:'smooth'})});
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{state.tab=b.dataset.t;renderView()});
+document.getElementById('back').onclick=()=>{state.sel='total';render()};
+function boot(d){DATA=d;BY={};d.items.forEach(i=>BY[i.id]=i);UNITS=d.units;BVORDER=d.bvorder;document.getElementById('login').hidden=true;document.getElementById('app').hidden=false;render()}
+function render(){renderPeriods();renderTop();renderView()}
+loadData();
+let rz;window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(DATA)renderTop()},150)});
+</script>
+</body>
+</html>
