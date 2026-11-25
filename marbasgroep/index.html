@@ -2,9 +2,9 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marbas financieel overzicht</title>
+<meta name="robots" content="noindex,nofollow">
+<title>Marbas Groep</title>
 <style>
 :root{
   --bg:#f6f7f9; --card:#fff; --ink:#14181f; --ink2:#5a6372; --ink3:#8a93a3; --line:#e4e7ec;
@@ -65,24 +65,84 @@ td .sm{display:block;color:var(--ink3);font-size:12px;font-weight:400}
 .empty{color:var(--ink3);padding:6px 0;font-size:14px}
 .scroll{overflow-x:auto}
 @media(max-width:760px){.kpis{grid-template-columns:1fr 1fr}.charts{grid-template-columns:1fr}.kpi .v{font-size:21px}}
+
+/* ---- app (inloggen, navigatie, uren, personeel) ---- */
+body{min-height:100vh}
+.navbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.navbar .brand{font-weight:700;font-size:17px;margin-right:6px}
+.navbar .navs{display:flex;gap:6px;flex-wrap:wrap}
+.navbar .who{margin-left:auto;display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:13px}
+.navbtn{border:1px solid var(--line);background:var(--card);color:var(--ink2);padding:7px 14px;border-radius:999px;cursor:pointer;font:inherit;font-size:14px}
+.navbtn[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn{font:inherit;font-size:14px;font-weight:600;color:#fff;background:var(--accent);border:0;border-radius:10px;padding:9px 16px;cursor:pointer}
+.btn:disabled{opacity:.5;cursor:default}
+.btn2{font:inherit;font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:6px 11px;cursor:pointer}
+.btn2.danger{color:var(--neg)}
+.btn2:hover{background:var(--accent-soft)}
+input,select{font:inherit;font-size:14px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-width:0}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:0}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ink3)}
+.row-f{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.grow{flex:1 1 180px}
+h2.sec{font-size:17px;margin:0 0 12px;color:var(--ink)}
+.stack{display:flex;flex-direction:column;gap:14px}
+.weekbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.weekbar b{font-size:16px}
+.day{border-top:1px solid var(--line);padding:10px 0}
+.day:first-child{border-top:0}
+.day-h{display:flex;justify-content:space-between;font-size:13px;color:var(--ink2);margin-bottom:4px}
+.day-h b{color:var(--ink)}
+.entry{display:flex;gap:10px;align-items:center;padding:6px 0;font-size:14px;flex-wrap:wrap}
+.entry .e-s{flex:1 1 200px}
+.entry .e-n{color:var(--ink3);font-size:12px;display:block}
+.entry .e-h{font-variant-numeric:tabular-nums;font-weight:600;min-width:48px;text-align:right}
+.tag{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--ink2);margin-left:6px}
+.msg{font-size:13px;min-height:18px}
+.msg.err{color:var(--neg)}.msg.ok{color:var(--pos)}
+.splitbox{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px 14px}
+.splitbox .sp{display:flex;align-items:center;gap:8px;font-size:13px}
+.splitbox input[type=number]{width:72px;padding:6px 8px}
+.splitbox .sum{grid-column:1/-1;font-size:12px;color:var(--ink3)}
+.simple td,.simple th{padding:8px 8px}
+.simple td.l,.simple th.l{text-align:left}
+.pill{font-size:12px;padding:2px 9px;border-radius:999px;background:var(--accent-soft);color:var(--ink2)}
+.pill.off{background:transparent;border:1px solid var(--line);color:var(--ink3)}
+.center{max-width:380px;margin:12vh auto 0}
+@media(max-width:760px){.navbar .who{margin-left:0;width:100%}}
 </style>
 </head>
 <body>
-<div class="wrap" id="login" style="max-width:380px;padding-top:12vh">
-  <h1 style="margin-bottom:6px">Marbas financieel overzicht</h1>
-  <div class="sub" style="margin-bottom:18px">Alleen voor Marbas Groep</div>
-  <form id="lf" class="card" style="display:flex;flex-direction:column;gap:12px">
-    <input id="pw" type="password" autocomplete="current-password" placeholder="Wachtwoord" aria-label="Wachtwoord" style="font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)">
-    <button class="back" type="submit" id="lb">Openen</button>
-    <div id="le" class="neg" style="font-size:13px;min-height:18px"></div>
+
+<div class="wrap center" id="v-login" hidden>
+  <h1 style="margin-bottom:6px">Marbas Groep</h1>
+  <div class="sub" style="margin-bottom:18px">Inloggen</div>
+  <form id="lf" class="card stack">
+    <label class="f">Gebruikersnaam<input id="lu" autocomplete="username" autocapitalize="off" required></label>
+    <label class="f">Wachtwoord<input id="lp" type="password" autocomplete="current-password" required></label>
+    <button class="btn" type="submit" id="lb">Inloggen</button>
+    <div id="le" class="msg err"></div>
   </form>
 </div>
-<div class="wrap" id="app" hidden>
-  <header>
-    <h1>Marbas financieel overzicht</h1>
-    <div class="sub">Stand 24 november 2026</div>
-  </header>
 
+<div class="wrap center" id="v-chg" hidden>
+  <h1 style="margin-bottom:6px">Kies je eigen wachtwoord</h1>
+  <div class="sub" style="margin-bottom:18px">Minimaal 10 tekens. Dit wachtwoord ken alleen jij.</div>
+  <form id="cf" class="card stack">
+    <label class="f">Nieuw wachtwoord<input id="c1p" type="password" autocomplete="new-password" required></label>
+    <label class="f">Nieuw wachtwoord nog een keer<input id="c2p" type="password" autocomplete="new-password" required></label>
+    <button class="btn" type="submit" id="cb">Opslaan</button>
+    <div id="ce" class="msg err"></div>
+  </form>
+</div>
+
+<div class="wrap" id="v-app" hidden>
+  <div class="navbar">
+    <span class="brand">Marbas Groep</span>
+    <div class="navs" id="navs"></div>
+    <div class="who"><span id="whoname"></span><button class="btn2" id="logout">Uitloggen</button></div>
+  </div>
+
+  <section id="tab-fin" hidden>
   <div class="periods" id="periods" role="group" aria-label="Periode"></div>
 
   <div class="selbar"><h2 id="seltitle"></h2><button class="back off" id="back">← Terug naar totaal</button></div>
@@ -97,31 +157,90 @@ td .sm{display:block;color:var(--ink3);font-size:12px;font-weight:400}
     <button class="tab" role="tab" data-t="bv" aria-selected="false">Per BV</button>
   </div>
   <div id="view"></div>
+
+  </section>
+
+  <section id="tab-uren" hidden></section>
+  <section id="tab-pers" hidden></section>
   <div class="tip" id="tip"></div>
 </div>
 
 <script>
 const API='https://marbas-dashboard.ancient-snowflake-c853.workers.dev';
-let DATA,BY={},UNITS,BVORDER;
-async function api(path,opt){const r=await fetch(API+path,opt);let j={};try{j=await r.json()}catch{}return {ok:r.ok,status:r.status,j}}
-async function loadData(){
-  const t=sessionStorage.getItem('mt');if(!t)return false;
-  const r=await api('/data',{headers:{Authorization:'Bearer '+t}});
-  if(!r.ok){sessionStorage.removeItem('mt');return false}
-  boot(r.j);return true;
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
+const nl=n=>String(Math.round(n*100)/100).replace('.',',');
+const ss={get:k=>{try{return sessionStorage.getItem(k)}catch{return null}},set:(k,v)=>{try{sessionStorage.setItem(k,v)}catch{}},del:k=>{try{sessionStorage.removeItem(k)}catch{}}};
+let ME=null,BVS=[],SUBJECTS=[],USERS=[];
+
+async function api(path,opt={}){
+  const h={...(opt.headers||{})};const t=ss.get('mt');if(t)h.Authorization='Bearer '+t;
+  if(opt.body&&!h['Content-Type'])h['Content-Type']='application/json';
+  let r;try{r=await fetch(API+path,{...opt,headers:h,body:opt.body&&typeof opt.body!=='string'?JSON.stringify(opt.body):opt.body})}catch{return {ok:false,status:0,j:{error:'Geen verbinding.'}}}
+  const raw=r.headers.get('content-type')||'';let j=raw.includes('json')?await r.json().catch(()=>({})):await r.text();
+  if(r.status===401&&path!=='/login'){ss.del('mt');view('login')}
+  return {ok:r.ok,status:r.status,j};
 }
-document.getElementById('lf').onsubmit=async e=>{
-  e.preventDefault();const b=document.getElementById('lb'),er=document.getElementById('le');b.disabled=true;er.textContent='';
-  try{const r=await api('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('pw').value})});
-    if(!r.ok){er.textContent=(r.j&&r.j.error)||'Inloggen lukt niet.';b.disabled=false;return}
-    sessionStorage.setItem('mt',r.j.token);
-    if(!await loadData()){er.textContent='Cijfers laden lukt niet.'}
-  }catch{er.textContent='Geen verbinding.'}b.disabled=false;document.getElementById('pw').value='';
+function view(v){['login','chg','app'].forEach(x=>$('v-'+x).hidden=x!==v)}
+
+// ---------- inloggen ----------
+$('lf').onsubmit=async e=>{
+  e.preventDefault();const b=$('lb'),er=$('le');b.disabled=true;er.textContent='';
+  const r=await api('/login',{method:'POST',body:{username:$('lu').value,password:$('lp').value}});
+  b.disabled=false;$('lp').value='';
+  if(!r.ok){er.textContent=r.j.error||'Inloggen lukt niet.';return}
+  ss.set('mt',r.j.token);
+  if(r.j.mustChange)view('chg');else startApp();
 };
+$('cf').onsubmit=async e=>{
+  e.preventDefault();const er=$('ce');er.textContent='';
+  if($('c1p').value!==$('c2p').value){er.textContent='De twee wachtwoorden zijn niet gelijk.';return}
+  const r=await api('/password',{method:'POST',body:{password:$('c1p').value}});
+  if(!r.ok){er.textContent=r.j.error||'Opslaan lukt niet.';return}
+  $('c1p').value=$('c2p').value='';startApp();
+};
+$('logout').onclick=()=>{ss.del('mt');ME=null;location.reload()};
+
+// ---------- app ----------
+const TABS=[];let curTab=null;
+async function startApp(){
+  const r=await api('/me');if(!r.ok){view('login');return}
+  if(r.j.user.mustChange){view('chg');return}
+  ME=r.j.user;BVS=r.j.bvs;$('whoname').textContent=ME.name;
+  TABS.length=0;
+  if(ME.role==='admin')TABS.push(['fin','Financieel']);
+  TABS.push(['uren','Uren']);
+  if(ME.role==='admin')TABS.push(['pers','Personeel']);
+  $('navs').innerHTML=TABS.map(([k,l])=>`<button class="navbtn" data-k="${k}">${l}</button>`).join('');
+  $('navs').querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>openTab(b.dataset.k));
+  view('app');
+  openTab(ss.get('tab')&&TABS.some(t=>t[0]===ss.get('tab'))?ss.get('tab'):TABS[0][0]);
+}
+async function openTab(k){
+  curTab=k;ss.set('tab',k);
+  ['fin','uren','pers'].forEach(x=>$('tab-'+x).hidden=x!==k);
+  $('navs').querySelectorAll('.navbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k));
+  if(k==='fin')await openFin();
+  if(k==='uren')await openUren();
+  if(k==='pers')await openPers();
+}
+async function loadSubjects(){const r=await api('/subjects');if(r.ok)SUBJECTS=r.j.subjects}
+async function loadUsers(){if(ME.role!=='admin')return;const r=await api('/users');if(r.ok)USERS=r.j.users}
+function flash(el,msg,err){el.textContent=msg;el.className='msg '+(err?'err':'ok');if(!err)setTimeout(()=>{if(el.textContent===msg)el.textContent=''},3000)}
+
+// ---------- financieel ----------
+let finLoaded=false;
+async function openFin(){
+  if(finLoaded){renderTop();return}
+  const r=await api('/data');
+  if(!r.ok){$('tab-fin').innerHTML='<div class="card">Cijfers laden lukt niet.</div>';return}
+  finLoaded=true;finBoot(r.j);
+}
 const eur = n => (n==null||isNaN(n))?'–':new Intl.NumberFormat('nl-NL',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
 const cls = n => n==null?'':(n<0?'neg':'pos');
 const sumN=a=>{let s=0,any=false;a.forEach(x=>{if(x!=null){s+=x;any=true}});return any?s:null};
 
+let DATA,BY={},UNITS,BVORDER;
 const mk=(y0,y1)=>{const m=[];for(let y=y0;y<=y1;y++)for(let i=1;i<=12;i++){if(y===2026&&i>11)break;m.push(y+'-'+String(i).padStart(2,'0'))}return m};
 const PERIODS=[
  {id:'y2026',lab:'Dit jaar',months:mk(2026,2026),end:2026},
@@ -219,10 +338,156 @@ function renderView(){
 }
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{state.tab=b.dataset.t;renderView()});
 document.getElementById('back').onclick=()=>{state.sel='total';render()};
-function boot(d){DATA=d;BY={};d.items.forEach(i=>BY[i.id]=i);UNITS=d.units;BVORDER=d.bvorder;document.getElementById('login').hidden=true;document.getElementById('app').hidden=false;render()}
 function render(){renderPeriods();renderTop();renderView()}
-loadData();
-let rz;window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(DATA)renderTop()},150)});
+function finBoot(d){DATA=d;BY={};d.items.forEach(i=>BY[i.id]=i);UNITS=d.units;BVORDER=d.bvorder;render()}
+let rz;window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(DATA&&curTab==='fin')renderTop()},150)});
+
+
+// ---------- uren ----------
+const U={week:mondayOf(new Date()),person:'me',edit:null,month:new Date().toISOString().slice(0,7),bv:''};
+function mondayOf(d){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());const w=(x.getDay()+6)%7;x.setDate(x.getDate()-w);return x}
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const DAGEN=['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'];
+const MAANDEN=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+const dl=d=>DAGEN[d.getDay()]+' '+d.getDate()+' '+MAANDEN[d.getMonth()];
+function weekNr(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));t.setUTCDate(t.getUTCDate()+4-(t.getUTCDay()||7));const y=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil(((t-y)/864e5+1)/7)}
+function subjOptions(sel){
+  const w=SUBJECTS.filter(s=>s.active&&s.type==='werk'),v=SUBJECTS.filter(s=>s.active&&s.type==='verlof');
+  const o=a=>a.map(s=>`<option value="${s.id}" ${s.id==sel?'selected':''}>${esc(s.name)}</option>`).join('');
+  return `<option value="">Kies onderwerp</option><optgroup label="Werk">${o(w)}</optgroup>${v.length?`<optgroup label="Verlof">${o(v)}</optgroup>`:''}`;
+}
+async function openUren(){
+  await Promise.all([loadSubjects(),loadUsers()]);
+  await renderUren();
+}
+async function renderUren(){
+  const el=$('tab-uren'),admin=ME.role==='admin';
+  const from=iso(U.week),to=iso(addDays(U.week,6));
+  const q=U.person==='me'?'':'&user='+U.person;
+  const r=await api(`/hours?from=${from}&to=${to}${q}`);
+  const hours=r.ok?r.j.hours:[];
+  const showWho=U.person==='all';
+  const days=[...Array(7)].map((_,i)=>addDays(U.week,i));
+  const total=hours.reduce((a,h)=>a+h.hours,0);
+  const e=U.edit?hours.find(h=>h.id===U.edit):null;
+  const defDate=e?e.date:(iso(new Date())>=from&&iso(new Date())<=to?iso(new Date()):from);
+  const who=admin?`<label class="f">Persoon<select id="u-person"><option value="me" ${U.person==='me'?'selected':''}>Alleen ik</option><option value="all" ${U.person==='all'?'selected':''}>Iedereen</option>${USERS.filter(x=>x.id!==ME.id&&x.active).map(x=>`<option value="${x.id}" ${String(x.id)===String(U.person)?'selected':''}>${esc(x.name)}</option>`).join('')}</select></label>`:'';
+  el.innerHTML=`<div class="stack">
+   <div class="card stack">
+    <div class="weekbar"><button class="btn2" id="u-prev">← Vorige</button><b>Week ${weekNr(U.week)}: ${U.week.getDate()} t/m ${addDays(U.week,6).getDate()} ${MAANDEN[addDays(U.week,6).getMonth()]} ${addDays(U.week,6).getFullYear()}</b><button class="btn2" id="u-next">Volgende →</button><button class="btn2" id="u-now">Deze week</button><span style="margin-left:auto;font-weight:600">Totaal ${nl(total)} uur</span>${who}</div>
+    <form id="u-form" class="row-f">
+      <label class="f">Datum<input type="date" id="u-date" value="${defDate}" required></label>
+      <label class="f">Uren<input type="number" id="u-h" step="0.25" min="0.25" max="24" inputmode="decimal" style="width:90px" value="${e?e.hours:''}" required></label>
+      <label class="f grow">Onderwerp<select id="u-s" required>${subjOptions(e?e.subject_id:'')}</select></label>
+      <label class="f grow">Omschrijving (mag leeg)<input id="u-n" maxlength="300" value="${esc(e?e.note:'')}"></label>
+      <button class="btn" type="submit">${e?'Opslaan':'Toevoegen'}</button>${e?'<button class="btn2" type="button" id="u-cancel">Annuleren</button>':''}
+    </form>
+    <div class="msg" id="u-msg"></div>
+   </div>
+   <div class="card">${days.map(d=>{const di=iso(d),hs=hours.filter(h=>h.date===di),t=hs.reduce((a,h)=>a+h.hours,0);
+     return `<div class="day"><div class="day-h"><b>${dl(d)}</b><span>${t?nl(t)+' uur':''}</span></div>${hs.map(h=>`<div class="entry"><span class="e-s">${esc(h.subject)}${h.type==='verlof'?'<span class="tag">verlof</span>':''}${showWho?`<span class="tag">${esc(h.person)}</span>`:''}${h.note?`<span class="e-n">${esc(h.note)}</span>`:''}</span><span class="e-h">${nl(h.hours)}</span><button class="btn2" data-edit="${h.id}">Wijzig</button><button class="btn2 danger" data-del="${h.id}">Verwijder</button></div>`).join('')}</div>`}).join('')}</div>
+   ${admin?'<div id="u-month"></div>':''}
+  </div>`;
+  $('u-prev').onclick=()=>{U.week=addDays(U.week,-7);U.edit=null;renderUren()};
+  $('u-next').onclick=()=>{U.week=addDays(U.week,7);U.edit=null;renderUren()};
+  $('u-now').onclick=()=>{U.week=mondayOf(new Date());U.edit=null;renderUren()};
+  if($('u-person'))$('u-person').onchange=ev=>{U.person=ev.target.value;U.edit=null;renderUren()};
+  if($('u-cancel'))$('u-cancel').onclick=()=>{U.edit=null;renderUren()};
+  el.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{U.edit=+b.dataset.edit;renderUren()});
+  el.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{
+    if(b.dataset.arm!=='1'){b.dataset.arm='1';b.textContent='Zeker weten?';setTimeout(()=>{if(b.isConnected){b.dataset.arm='';b.textContent='Verwijder'}},4000);return}
+    const r=await api('/hours/'+b.dataset.del,{method:'DELETE'});if(r.ok)renderUren();else flash($('u-msg'),r.j.error,true)});
+  $('u-form').onsubmit=async ev=>{
+    ev.preventDefault();const m=$('u-msg');
+    const body={date:$('u-date').value,hours:parseFloat($('u-h').value),subject_id:+$('u-s').value,note:$('u-n').value};
+    if(!body.subject_id){flash(m,'Kies een onderwerp.',true);return}
+    let r;
+    if(e)r=await api('/hours/'+e.id,{method:'PUT',body});
+    else{if(admin&&U.person!=='me'&&U.person!=='all')body.user_id=+U.person;r=await api('/hours',{method:'POST',body})}
+    if(!r.ok){flash(m,r.j.error||'Opslaan lukt niet.',true);return}
+    U.edit=null;await renderUren();flash($('u-msg'),'Opgeslagen.');
+  };
+  if(admin)renderMonth();
+}
+async function renderMonth(){
+  const el=$('u-month');if(!el)return;
+  const r=await api('/report?month='+U.month);const d=r.ok?r.j:{bySubject:[],byPerson:[],byBv:[],invoice:[],unbilled:0};
+  const bvOpts=['<option value="">Alle BV\'s</option>'].concat(BVS.map(b=>`<option value="${esc(b)}" ${U.bv===b?'selected':''}>${esc(b)}</option>`)).join('');
+  const inv=d.invoice.filter(x=>!U.bv||x.bv===U.bv);
+  el.innerHTML=`<div class="card stack">
+    <div class="row-f"><h2 class="sec" style="margin:0">Overzicht per maand</h2><label class="f">Maand<input type="month" id="m-month" value="${U.month}"></label></div>
+    <div class="charts" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+     <div><h3 style="margin:0 0 6px;font-size:13px;color:var(--ink2)">Doorbelast per BV</h3><table class="simple"><tbody>${d.byBv.map(x=>`<tr><td class="l">${esc(x.bv)}</td><td>${nl(x.hours)} uur</td></tr>`).join('')||'<tr><td class="l" style="color:var(--ink3)">Nog geen uren</td></tr>'}${d.unbilled?`<tr><td class="l" style="color:var(--ink3)">Intern, niet doorbelast</td><td style="color:var(--ink3)">${nl(d.unbilled)} uur</td></tr>`:''}</tbody></table></div>
+     <div><h3 style="margin:0 0 6px;font-size:13px;color:var(--ink2)">Per onderwerp</h3><table class="simple"><tbody>${d.bySubject.map(x=>`<tr><td class="l">${esc(x.subject)}</td><td>${nl(x.hours)} uur</td></tr>`).join('')||'<tr><td class="l" style="color:var(--ink3)">Nog geen uren</td></tr>'}</tbody></table></div>
+     <div><h3 style="margin:0 0 6px;font-size:13px;color:var(--ink2)">Per persoon</h3><table class="simple"><tbody>${d.byPerson.map(x=>`<tr><td class="l">${esc(x.person)}</td><td>${nl(x.hours)} uur${x.leave?` <span style="color:var(--ink3)">(waarvan ${nl(x.leave)} verlof)</span>`:''}</td></tr>`).join('')||'<tr><td class="l" style="color:var(--ink3)">Nog geen uren</td></tr>'}</tbody></table></div>
+    </div>
+    <div class="row-f"><h2 class="sec" style="margin:0">Factuuroverzicht</h2><label class="f">BV<select id="m-bv">${bvOpts}</select></label><button class="btn" id="m-dl" ${inv.length?'':'disabled'}>Download als bestand</button></div>
+    <div class="scroll"><table class="simple"><thead><tr><th class="l">BV</th><th class="l">Onderwerp</th><th class="l">Persoon</th><th>Uren</th></tr></thead><tbody>${inv.map(x=>`<tr><td class="l">${esc(x.bv)}</td><td class="l">${esc(x.subject)}</td><td class="l">${esc(x.person)}</td><td>${nl(x.hours)}</td></tr>`).join('')||'<tr><td class="l" colspan="4" style="color:var(--ink3)">Geen doorbelaste uren in deze maand</td></tr>'}</tbody></table></div>
+  </div>`;
+  $('m-month').onchange=ev=>{if(ev.target.value){U.month=ev.target.value;renderMonth()}};
+  $('m-bv').onchange=ev=>{U.bv=ev.target.value;renderMonth()};
+  $('m-dl').onclick=async()=>{
+    const t=ss.get('mt');
+    const res=await fetch(API+`/invoice.csv?month=${U.month}${U.bv?'&bv='+encodeURIComponent(U.bv):''}`,{headers:{Authorization:'Bearer '+t}});
+    if(!res.ok)return;const blob=await res.blob();const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);a.download=`${U.month} Uren${U.bv?' - '+U.bv:''}.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  };
+}
+
+// ---------- personeel ----------
+function splitEditor(split){
+  const box=document.createElement('div');box.className='splitbox';
+  const cur=Object.fromEntries((split||[]).map(s=>[s.bv,s.pct]));
+  box.innerHTML=BVS.map(b=>`<div class="sp"><input type="checkbox" data-bv="${esc(b)}" ${cur[b]?'checked':''} id="sp-${esc(b)}"><label for="sp-${esc(b)}" style="flex:1">${esc(b)}</label><input type="number" min="1" max="100" step="1" data-pct="${esc(b)}" value="${cur[b]||''}" ${cur[b]?'':'disabled'}>%</div>`).join('')+'<div class="sum"></div>';
+  const upd=()=>{let s=0,n=0;box.querySelectorAll('[data-bv]').forEach(c=>{const p=box.querySelector(`[data-pct="${c.dataset.bv}"]`);p.disabled=!c.checked;if(c.checked){n++;s+=+p.value||0}});
+    box.querySelector('.sum').textContent=n?`Samen ${s}%${s===100?'':' (moet 100% zijn)'}`:'Geen BV gekozen: intern, wordt niet doorbelast.'};
+  box.addEventListener('input',upd);box.addEventListener('change',upd);upd();
+  return {el:box,get:()=>[...box.querySelectorAll('[data-bv]')].filter(c=>c.checked).map(c=>({bv:c.dataset.bv,pct:+box.querySelector(`[data-pct="${c.dataset.bv}"]`).value||0}))};
+}
+const splitText=s=>s.length?s.map(x=>`${esc(x.bv)} ${x.pct}%`).join(', '):'<span style="color:var(--ink3)">Intern</span>';
+let P={editS:null,resetU:null,addSplit:null};
+async function openPers(){await Promise.all([loadSubjects(),loadUsers()]);renderPers()}
+function renderPers(){
+  const el=$('tab-pers');
+  const uRows=USERS.map(u=>`<tr><td class="l"><b>${esc(u.name)}</b></td><td class="l">${esc(u.username)}</td><td class="l">${u.role==='admin'?'Beheerder':'Medewerker'}</td><td class="l"><span class="pill ${u.active?'':'off'}">${u.active?(u.mustChange?'Nog geen eigen wachtwoord':'Actief'):'Geblokkeerd'}</span></td><td>${u.id===ME.id?'':`<button class="btn2" data-act="${u.id}">${u.active?'Blokkeren':'Activeren'}</button> <button class="btn2" data-reset="${u.id}">Nieuw wachtwoord</button>`}${P.resetU===u.id?`<div class="row-f" style="margin-top:8px;justify-content:flex-end"><input id="ru-pw" type="text" placeholder="Tijdelijk wachtwoord" autocomplete="off"><button class="btn2" data-resetok="${u.id}">Opslaan</button></div>`:''}</td></tr>`).join('');
+  const sRows=SUBJECTS.map(s=>P.editS===s.id?`<tr><td class="l" colspan="5"><div class="stack" id="es-box"><div class="row-f"><label class="f grow">Naam<input id="es-name" value="${esc(s.name)}"></label></div><div id="es-split"></div><div class="row-f"><button class="btn" id="es-save">Opslaan</button><button class="btn2" id="es-cancel">Annuleren</button><button class="btn2" id="es-act">${s.active?'Deactiveren':'Activeren'}</button><button class="btn2 danger" id="es-del">Verwijderen</button></div><div class="msg" id="es-msg"></div></div></td></tr>`
+    :`<tr><td class="l"><b>${esc(s.name)}</b></td><td class="l">${s.type==='verlof'?'Verlof':'Werk'}</td><td class="l">${s.type==='verlof'?'<span style="color:var(--ink3)">Niet van toepassing</span>':splitText(s.split)}</td><td class="l"><span class="pill ${s.active?'':'off'}">${s.active?'Actief':'Niet meer in gebruik'}</span></td><td><button class="btn2" data-es="${s.id}">Wijzig</button></td></tr>`).join('');
+  el.innerHTML=`<div class="stack">
+   <div class="card stack"><h2 class="sec">Personeel</h2>
+    <div class="scroll"><table class="simple"><thead><tr><th class="l">Naam</th><th class="l">Gebruikersnaam</th><th class="l">Rol</th><th class="l">Status</th><th></th></tr></thead><tbody>${uRows}</tbody></table></div>
+    <form id="nu-form" class="row-f"><label class="f grow">Naam<input id="nu-name" required></label><label class="f grow">Gebruikersnaam<input id="nu-un" required autocapitalize="off"></label><label class="f">Rol<select id="nu-role"><option value="medewerker">Medewerker</option><option value="admin">Beheerder</option></select></label><label class="f grow">Tijdelijk wachtwoord<input id="nu-pw" required autocomplete="off" minlength="8"></label><button class="btn" type="submit">Personeelslid toevoegen</button></form>
+    <div class="sub">Geef het tijdelijke wachtwoord zelf door aan de persoon. Bij de eerste keer inloggen kiest die een eigen wachtwoord.</div><div class="msg" id="nu-msg"></div>
+   </div>
+   <div class="card stack"><h2 class="sec">Onderwerpen</h2>
+    <div class="scroll"><table class="simple"><thead><tr><th class="l">Onderwerp</th><th class="l">Soort</th><th class="l">Doorbelasten aan</th><th class="l">Status</th><th></th></tr></thead><tbody>${sRows}</tbody></table></div>
+    <form id="ns-form" class="stack"><div class="row-f"><label class="f grow">Nieuw onderwerp<input id="ns-name" required></label><label class="f">Soort<select id="ns-type"><option value="werk">Werk</option><option value="verlof">Verlof</option></select></label></div><div id="ns-split"></div><div class="row-f"><button class="btn" type="submit">Onderwerp toevoegen</button></div></form><div class="msg" id="ns-msg"></div>
+   </div></div>`;
+  // nieuw onderwerp
+  P.addSplit=splitEditor([]);$('ns-split').appendChild(P.addSplit.el);
+  $('ns-type').onchange=ev=>{$('ns-split').style.display=ev.target.value==='verlof'?'none':''};
+  $('ns-form').onsubmit=async ev=>{ev.preventDefault();const t=$('ns-type').value;
+    const r=await api('/subjects',{method:'POST',body:{name:$('ns-name').value,type:t,split:t==='verlof'?[]:P.addSplit.get()}});
+    if(!r.ok){flash($('ns-msg'),r.j.error,true);return}await loadSubjects();renderPers();flash($('ns-msg'),'Onderwerp toegevoegd.')};
+  // onderwerp wijzigen
+  el.querySelectorAll('[data-es]').forEach(b=>b.onclick=()=>{P.editS=+b.dataset.es;renderPers()});
+  if(P.editS){const s=SUBJECTS.find(x=>x.id===P.editS);
+    if(s&&$('es-split')){const ed=splitEditor(s.split);if(s.type==='werk')$('es-split').appendChild(ed.el);
+      $('es-cancel').onclick=()=>{P.editS=null;renderPers()};
+      $('es-save').onclick=async()=>{const body={name:$('es-name').value};if(s.type==='werk')body.split=ed.get();const r=await api('/subjects/'+s.id,{method:'PUT',body});if(!r.ok){flash($('es-msg'),r.j.error,true);return}P.editS=null;await loadSubjects();renderPers()};
+      $('es-act').onclick=async()=>{await api('/subjects/'+s.id,{method:'PUT',body:{active:!s.active}});P.editS=null;await loadSubjects();renderPers()};
+      $('es-del').onclick=async()=>{const r=await api('/subjects/'+s.id,{method:'DELETE'});if(!r.ok){flash($('es-msg'),r.j.error,true);return}P.editS=null;await loadSubjects();renderPers()};}}
+  // personeel
+  $('nu-form').onsubmit=async ev=>{ev.preventDefault();
+    const r=await api('/users',{method:'POST',body:{name:$('nu-name').value,username:$('nu-un').value,role:$('nu-role').value,tempPassword:$('nu-pw').value}});
+    if(!r.ok){flash($('nu-msg'),r.j.error,true);return}await loadUsers();renderPers();flash($('nu-msg'),'Personeelslid toegevoegd.')};
+  el.querySelectorAll('[data-act]').forEach(b=>b.onclick=async()=>{const u=USERS.find(x=>x.id==b.dataset.act);await api('/users/'+u.id,{method:'PUT',body:{active:!u.active}});await loadUsers();renderPers()});
+  el.querySelectorAll('[data-reset]').forEach(b=>b.onclick=()=>{P.resetU=+b.dataset.reset;renderPers()});
+  el.querySelectorAll('[data-resetok]').forEach(b=>b.onclick=async()=>{const r=await api('/users/'+b.dataset.resetok,{method:'PUT',body:{resetPassword:$('ru-pw').value}});if(!r.ok){alert(r.j.error);return}P.resetU=null;await loadUsers();renderPers()});
+}
+
+// ---------- start ----------
+(async()=>{ if(ss.get('mt')){ await startApp() } else view('login') })();
 </script>
 </body>
 </html>
