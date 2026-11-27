@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<title>Pandpartners, goed voor vastgoed (voorbeeldsite)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Bricolage+Grotesque:wght@600;700;800&display=swap">
+<style>
+/* Opzet: warme beheersite. Twee daken die in elkaar grijpen als beeldmerk: partners in het pand. */
+:root{
+  --bg:#FAF7F2; --surface:#FFFFFF; --fg:#17261F; --muted:#5C6B62; --line:#E3DDD1;
+  --brand:#1F4D3A; --brand-ink:#FFFFFF; --soft:#EDE8DC; --accent:#D9673B; --accent-ink:#2B0F04;
+  --ok:#1F7A5A;
+  --font-display:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1712; --surface:#17231C; --fg:#ECF0EA; --muted:#A3B3A8; --line:#2A3A30;
+    --brand:#8FC9AC; --brand-ink:#0A1710; --soft:#1D2E24; --accent:#EE8A5F; --accent-ink:#2B0F04; --ok:#5CC49C;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1712; --surface:#17231C; --fg:#ECF0EA; --muted:#A3B3A8; --line:#2A3A30;
+  --brand:#8FC9AC; --brand-ink:#0A1710; --soft:#1D2E24; --accent:#EE8A5F; --accent-ink:#2B0F04; --ok:#5CC49C;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--fg); font-family:var(--font-body); font-size:16px; line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+h1,h2,h3{font-family:var(--font-display); line-height:1.12; margin:0; text-wrap:balance; letter-spacing:-0.01em}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1120px; margin:0 auto}
+.eyebrow{font-size:.78rem; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--muted)}
+:focus-visible{outline:3px solid var(--accent); outline-offset:3px; border-radius:4px}
+
+.demo{background:var(--soft); color:var(--muted); font-size:.82rem; text-align:center; padding:8px 0}
+
+header.top{position:sticky; top:env(safe-area-inset-top, 0px); z-index:5; background:var(--bg); border-bottom:1px solid var(--line)}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:10; background:var(--bg)}
+.nav{display:flex; align-items:center; gap:24px; padding-block:14px; flex-wrap:wrap}
+.logo{display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--font-display); font-weight:800; font-size:1.35rem; letter-spacing:-0.02em; color:var(--brand)}
+.logo svg{width:30px; height:30px; flex:none}
+.nav ul{display:flex; gap:22px; list-style:none; margin:0 0 0 auto; padding:0; flex-wrap:wrap}
+.nav ul a{text-decoration:none; font-size:.95rem; font-weight:500; color:var(--muted)}
+.nav ul a:hover{color:var(--fg)}
+.btn{display:inline-block; font:600 .95rem var(--font-body); padding:11px 20px; border-radius:8px; text-decoration:none; border:1px solid transparent; cursor:pointer}
+.btn-primary{background:var(--brand); color:var(--brand-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{border-color:var(--line); color:var(--fg); background:transparent}
+.btn-ghost:hover{border-color:var(--brand)}
+
+.hero{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:48px; align-items:center; padding-block:64px 72px}
+.hero h1{font-size:clamp(2.1rem,5vw,3.5rem); font-weight:800; margin:14px 0 18px}
+.hero .lead{font-size:1.12rem; color:var(--muted); max-width:52ch}
+.cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:28px}
+.facade{width:100%; height:auto; display:block; border-radius:14px; background:var(--soft)}
+.facade .w{fill:var(--surface); stroke:var(--line); stroke-width:1.5}
+.facade .lit{fill:var(--accent)}
+.facade .wall{fill:var(--brand)}
+.facade .door{fill:var(--bg)}
+
+section{padding-block:64px}
+.band{background:var(--surface); border-block:1px solid var(--line)}
+.section-head{max-width:62ch; margin-bottom:36px}
+.section-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem); font-weight:800; margin-top:10px}
+.section-head p{margin-top:12px; color:var(--muted)}
+
+.services{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px}
+.svc{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:32px}
+.band .svc{background:var(--bg)}
+.svc h3{font-size:1.5rem; font-weight:800; margin-bottom:10px}
+.svc > p{color:var(--muted)}
+.svc ul{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:10px}
+.svc li{display:flex; gap:12px; align-items:flex-start}
+.svc li::before{content:""; flex:none; width:8px; height:8px; margin-top:.62em; border-radius:2px; background:var(--accent)}
+
+.who{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--surface)}
+.who div{padding:26px; border-right:1px solid var(--line)}
+.who div:last-child{border-right:0}
+.who h3{font-size:1.05rem; font-weight:700; margin-bottom:8px}
+.who p{color:var(--muted); font-size:.95rem}
+
+.steps{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; list-style:none; margin:0; padding:0; counter-reset:s}
+.steps li{counter-increment:s; border-top:3px solid var(--brand); padding-top:16px}
+.steps li::before{content:"Stap " counter(s); display:block; font-size:.78rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:6px}
+.steps h3{font-size:1.1rem; font-weight:700; margin-bottom:6px}
+.steps p{color:var(--muted); font-size:.95rem}
+
+.report{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:48px; align-items:start}
+form{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:28px; display:grid; gap:16px}
+.band form{background:var(--bg)}
+label{display:grid; gap:6px; font-size:.88rem; font-weight:600}
+input,select,textarea{font:400 1rem var(--font-body); color:var(--fg); background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:11px 12px; width:100%}
+.band input,.band select,.band textarea{background:var(--surface)}
+textarea{min-height:110px; resize:vertical}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.note{font-size:.85rem; color:var(--muted)}
+#sent{display:none; background:var(--soft); border-radius:8px; padding:12px 14px; color:var(--ok); font-weight:600; font-size:.92rem}
+#sent.show{display:block}
+
+.portal{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px}
+.pcard{display:flex; flex-direction:column; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:28px; text-decoration:none}
+.pcard:hover{border-color:var(--brand)}
+.pcard h3{font-size:1.3rem; font-weight:800}
+.pcard p{color:var(--muted); flex:1}
+.pcard .go{margin-top:10px; font-weight:600; color:var(--brand)}
+.pcard .go::after{content:" \2192"}
+.family{display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between}
+.family p{max-width:60ch; color:var(--muted)}
+.family strong{color:var(--fg)}
+
+footer{border-top:1px solid var(--line); padding-block:40px 48px; color:var(--muted); font-size:.9rem}
+.cols{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px}
+footer h3{font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; color:var(--fg)}
+footer ul{list-style:none; margin:0; padding:0; display:grid; gap:6px}
+footer .legal{margin-top:32px; padding-top:20px; border-top:1px solid var(--line); font-size:.82rem}
+
+@media (max-width:860px){
+  .hero,.report{grid-template-columns:minmax(0,1fr); gap:32px}
+  .hero{padding-block:40px 48px}
+  .services,.portal{grid-template-columns:minmax(0,1fr)}
+  .who{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .who div:nth-child(2){border-right:0}
+  .who div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cols{grid-template-columns:minmax(0,1fr)}
+  .nav ul{margin-left:0; width:100%; order:3; gap:16px}
+  .nav>.btn{margin-left:auto; padding:8px 14px}
+  section{padding-block:48px}
+}
+@media (max-width:520px){
+  .who{grid-template-columns:minmax(0,1fr)}
+  .who div{border-right:0; border-bottom:1px solid var(--line)}
+  .who div:last-child{border-bottom:0}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .svc{padding:24px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+<div class="demo">Voorbeeldsite. Teksten, namen en gegevens zijn concept en nog niet definitief.</div>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Pandpartners, naar boven">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M2 29V14L11 6l9 8v15z" fill="currentColor"/>
+        <path d="M13 29V17l8.5-7.5L30 17v12z" fill="var(--accent)" opacity=".92"/>
+      </svg>
+      Pandpartners
+    </a>
+    <ul>
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#voorwie">Voor wie</a></li>
+      <li><a href="#werkwijze">Werkwijze</a></li>
+      <li><a href="#melding">Melding doen</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary" href="https://portal.marbas.nl/incident" target="_blank" rel="noopener">Melding doen</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">Wij zijn jouw pandpartners</p>
+      <h1>Goed voor vastgoed</h1>
+      <p class="lead">Huurbeheer en VvE-beheer voor woningen, bedrijfsruimten en appartementencomplexen. Jij bezit of bewoont het pand, wij zorgen dat het klopt. Met één vast aanspreekpunt.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#diensten">Bekijk onze diensten</a>
+        <a class="btn btn-ghost" href="#contact">Neem contact op</a>
+      </div>
+    </div>
+    <svg class="facade" viewBox="0 0 400 440" role="img" aria-label="Twee panden naast elkaar met verlichte ramen">
+      <rect width="400" height="440" fill="var(--soft)"/>
+      <path class="wall" d="M44 400V170L132 92l88 78v230z"/>
+      <path class="lit" d="M180 400V218l88-78 88 78v182z"/>
+      <g>
+        <rect class="w" x="76" y="196" width="40" height="48" rx="4"/><rect class="w" x="136" y="196" width="40" height="48" rx="4"/>
+        <rect class="w" x="76" y="270" width="40" height="48" rx="4"/><rect class="w" x="136" y="270" width="40" height="48" rx="4"/>
+        <rect class="w" x="212" y="240" width="40" height="48" rx="4"/><rect class="w" x="284" y="240" width="40" height="48" rx="4"/>
+        <rect class="w" x="212" y="312" width="40" height="48" rx="4"/>
+        <rect class="door" x="284" y="322" width="40" height="78" rx="4"/>
+        <rect class="door" x="106" y="342" width="40" height="58" rx="4"/>
+      </g>
+      <rect x="24" y="400" width="352" height="6" rx="3" fill="var(--fg)" opacity=".35"/>
+    </svg>
+  </div>
+
+  <section id="diensten" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Diensten</p>
+        <h2>Twee vormen van beheer, één manier van werken</h2>
+        <p>Verhuurde panden of een vereniging van eigenaren: wij houden de administratie, het onderhoud en het contact op orde.</p>
+      </div>
+      <div class="services">
+        <article class="svc">
+          <h3>Huurbeheer</h3>
+          <p>Professioneel beheer van woningen en bedrijfsruimten, gericht op waardebehoud en tevreden huurders.</p>
+          <ul>
+            <li>Verhuur, huurcontracten en oplevering</li>
+            <li>Huurincasso, indexering en overzichten voor de eigenaar</li>
+            <li>Technisch beheer en afhandeling van meldingen</li>
+            <li>Eén aanspreekpunt voor huurders</li>
+          </ul>
+        </article>
+        <article class="svc">
+          <h3>VvE-beheer</h3>
+          <p>Administratief, financieel en technisch beheer voor verenigingen van eigenaren van elke omvang.</p>
+          <ul>
+            <li>Begroting, jaarrekening en servicekosten</li>
+            <li>Vergaderingen en besluiten van de VvE</li>
+            <li>Meerjarenonderhoudsplan en uitvoering van onderhoud</li>
+            <li>Aanspreekpunt voor bewoners en bestuur</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="voorwie">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Voor wie</p>
+        <h2>Voor wie wij partner zijn</h2>
+      </div>
+      <div class="who">
+        <div><h3>Woningcorporaties</h3><p>Aanvullend beheer en onderhoud, met heldere afspraken over service aan huurders.</p></div>
+        <div><h3>Particuliere eigenaren</h3><p>Ontzorgd verhuren, met overzicht over rendement en staat van het pand.</p></div>
+        <div><h3>VvE's</h3><p>Een betrouwbare beheerder voor bestuur en bewoners, van boekhouding tot onderhoud.</p></div>
+        <div><h3>Zakelijk vastgoed</h3><p>Beheer van kantoren en bedrijfsruimten, met dezelfde aandacht voor de gebruiker.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="werkwijze" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Werkwijze</p>
+        <h2>Zo pakken wij een melding op</h2>
+        <p>Een lekkage of een defecte lift is voor een bewoner meteen een groot probleem. Daarom volgt elke melding dezelfde vaste route.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Melding</h3><p>Je meldt het via het portaal, per telefoon of per mail.</p></li>
+        <li><h3>Beoordeling</h3><p>Wij bepalen de urgentie en wie het oplost, en bevestigen dat de melding is ontvangen.</p></li>
+        <li><h3>Uitvoering</h3><p>Een vakman of leverancier pakt het op. Wij houden de planning in de gaten.</p></li>
+        <li><h3>Terugkoppeling</h3><p>De melder hoort wat er gedaan is en kan aangeven of het is opgelost.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="melding">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Voor huurders en bewoners</p>
+        <h2>Alles voor huurders en bewoners in het portaal</h2>
+        <p>Een storing melden, een antwoord zoeken of je gegevens bekijken. Het portaal opent in een nieuw tabblad. Bij spoed bel je direct ons kantoor, bij brand, gaslucht of gevaar bel je 112.</p>
+      </div>
+      <div class="portal">
+        <a class="pcard" href="https://portal.marbas.nl/incident" target="_blank" rel="noopener">
+          <h3>Melding doen</h3>
+          <p>Reparatieverzoeken, storingen en overige vragen.</p>
+          <span class="go">Naar het meldformulier</span>
+        </a>
+        <a class="pcard" href="https://portal.marbas.nl/help" target="_blank" rel="noopener">
+          <h3>Vraag en antwoord</h3>
+          <p>Algemene informatie en meestgestelde vragen.</p>
+          <span class="go">Bekijk de antwoorden</span>
+        </a>
+        <a class="pcard" href="https://portal.marbas.nl/myportal" target="_blank" rel="noopener">
+          <h3>Mijn portaal</h3>
+          <p>Inloggen om je meldingen en documenten te bekijken.</p>
+          <span class="go">Inloggen</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-block:40px">
+    <div class="wrap family">
+      <p><strong>Wij zijn jouw pandpartners.</strong> Onderdeel van Marbas Groep: de kracht van een groep, en de aandacht van een kleine beheerder.</p>
+      <a class="btn btn-ghost" href="#contact">Meer over de groep</a>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="logo" href="#top" style="margin-bottom:12px">Pandpartners</a>
+        <p>Goed voor vastgoed. Huurbeheer en VvE-beheer, onderdeel van Marbas Groep.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li>[Adres kantoor]</li>
+          <li>[Telefoonnummer]</li>
+          <li>[E-mailadres]</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Huurders en bewoners</h3>
+        <ul>
+          <li><a href="https://portal.marbas.nl/incident" target="_blank" rel="noopener">Melding doen</a></li>
+          <li><a href="https://portal.marbas.nl/help" target="_blank" rel="noopener">Vraag en antwoord</a></li>
+          <li><a href="https://portal.marbas.nl/myportal" target="_blank" rel="noopener">Mijn portaal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Bereikbaarheid</h3>
+        <ul>
+          <li>Kantoor: [openingstijden]</li>
+          <li>Spoed buiten kantoortijd: [nummer]</li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">KvK [nummer] · btw [nummer] · Privacyverklaring · Algemene voorwaarden</p>
+  </div>
+</footer>
+
+
+</body>
+</html>
